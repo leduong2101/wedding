@@ -1,0 +1,11 @@
+node_modules/
+.DS_Store
+.playwright-mcp/
+*.log
+__pycache__/
+# Local reference downloads are not approved for public redistribution.
+downloads/
+assets/beautiful-in-white.mp3
+assets/beautiful-in-white-67s.mp3
+# Keep original photographs private; the invitation uses assets/photos/.
+image/

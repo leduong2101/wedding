@@ -1,0 +1,784 @@
+/* Romantic cream/red skin. Structural layout and breakpoints live in styles.css. */
+@font-face {
+  font-family: "Dancing Script";
+  src: url("../assets/fonts/dancing-script.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+:root {
+  --wine: #943d49;
+  --wine-dark: #752c39;
+  --paper: #fcf7ef;
+  --paper-deep: #f5e8df;
+  --ink: #6b3841;
+  --muted: #806960;
+  --gold: #ae8454;
+  --line: #e8d6c6;
+  --script: "Dancing Script", "Palatino Linotype", Georgia, cursive;
+}
+
+h2 {
+  font-style: italic;
+  letter-spacing: -.8px;
+}
+
+.eyebrow,
+.cover .eyebrow,
+.hero .eyebrow,
+.event-card > .eyebrow,
+.thanks .eyebrow {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: .4px;
+  text-transform: none;
+}
+
+.eyebrow.light {
+  color: var(--wine);
+}
+
+.button {
+  border-radius: 40px;
+  letter-spacing: .5px;
+  padding-inline: 29px;
+}
+
+.button-gold {
+  background: var(--wine);
+  color: var(--paper);
+  box-shadow: 0 6px 22px #943d491c;
+}
+
+.button-gold:hover {
+  background: var(--wine-dark);
+}
+
+/* An ivory invitation with a thin arched edge and delicate floral corners. */
+.cover {
+  background-color: var(--paper);
+  color: var(--wine);
+  background-image: radial-gradient(ellipse at 50% 45%, #fffdf9, #fcf7ef00 65%), url("../assets/floral.svg"), url("../assets/floral.svg");
+  background-position: center, left -65px bottom -140px, right -70px top -110px;
+  background-size: cover, 330px, 300px;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 38px;
+  padding-bottom: 24px;
+}
+
+.cover::before {
+  border-color: #b9926340;
+  border-radius: 46% 46% 20px 20px;
+  inset: 18px;
+}
+
+.cover::after {
+  display: none;
+}
+
+.cover-frame {
+  margin: auto 0;
+  padding: 20px 0;
+  flex-shrink: 0;
+}
+
+.cover .eyebrow {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.double-happiness {
+  color: var(--wine);
+  font-size: 48px;
+  margin: 18px 0 15px;
+  opacity: .85;
+}
+
+.cover-prelude,
+.cover-invite {
+  color: var(--muted);
+}
+
+.cover h1 {
+  font-family: var(--script);
+  font-size: clamp(56px, 6vw, 76px);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0;
+  margin: 20px 0 24px;
+}
+
+.cover h1 i {
+  font-family: var(--script);
+  font-size: 29px;
+  line-height: 1;
+  margin: 6px 0;
+}
+
+.cover-date {
+  color: var(--wine);
+  font-family: var(--serif);
+  font-size: 15px;
+  letter-spacing: 3px;
+}
+
+.cover-divider {
+  margin-block: 14px;
+}
+
+.cover-hint {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.cover-bottom {
+  position: static;
+  flex-shrink: 0;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: 11px;
+  letter-spacing: .8px;
+  padding-top: 8px;
+}
+
+.cover.is-opening {
+  pointer-events: none;
+  animation: cover-fade 850ms ease-in-out both;
+}
+
+.cover.is-opening .cover-frame {
+  animation: letter-lift 800ms cubic-bezier(.22, .61, .36, 1) both;
+}
+
+@keyframes cover-fade {
+  0%, 15% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes letter-lift {
+  to { transform: translateY(-16px) scale(.98); }
+}
+
+/* A light opening spread instead of a solid red panel. */
+.site-header {
+  background: var(--paper);
+  color: var(--wine);
+  border-bottom-color: transparent;
+}
+
+.site-header nav {
+  font-family: var(--serif);
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+.site-header nav a:hover {
+  color: var(--wine-dark);
+}
+
+.header-date {
+  color: var(--muted);
+}
+
+.hero {
+  background: #fcf7ef;
+  color: var(--wine);
+  padding-top: 55px;
+  padding-bottom: 100px;
+  gap: 7%;
+}
+
+.hero::before {
+  opacity: .3;
+  right: -120px;
+}
+
+.hero-intro {
+  color: var(--muted);
+  margin-top: 20px;
+}
+
+.hero h1 {
+  font-family: var(--script);
+  font-size: clamp(95px, 10vw, 145px);
+  letter-spacing: -2px;
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+.hero-dot {
+  font-family: var(--serif);
+  font-size: .65em;
+}
+
+.hero-names,
+.footer-names {
+  font-family: var(--script);
+  font-weight: 500;
+  font-size: clamp(32px, 3.2vw, 45px);
+  letter-spacing: 0;
+}
+
+.hero-names {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 9px;
+  white-space: normal;
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+.hero-names i {
+  font-family: var(--script);
+  font-size: 26px;
+  margin-inline: 2px;
+}
+
+.hero-quote {
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: italic;
+  margin-top: 14px;
+}
+
+.hero-date > span {
+  color: var(--wine);
+  border-right-color: var(--line);
+}
+
+.hero-date > div {
+  letter-spacing: .5px;
+  font-family: var(--serif);
+  font-size: 14px;
+}
+
+.hero-date > div > span:last-child {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.light-link {
+  color: var(--wine);
+  border-bottom-color: var(--line);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+.portrait-frame {
+  padding: 0;
+  border: 0;
+  border-radius: 220px 220px 120px 120px;
+  box-shadow: 0 20px 60px #90495018;
+}
+
+.portrait-frame img {
+  border-radius: inherit;
+  filter: saturate(.78);
+}
+
+.hero-art::before {
+  inset: 3px;
+  border-color: #b9926359;
+  border-radius: 230px 230px 135px 135px;
+  transform: rotate(4deg);
+}
+
+.portrait-stamp {
+  box-shadow: 0 5px 25px #90495012;
+  outline-color: var(--line);
+}
+
+.art-note,
+.hero-side-note {
+  color: var(--muted);
+}
+
+.hero-side-note {
+  letter-spacing: 1px;
+  opacity: .6;
+}
+
+.ribbon {
+  border: 0;
+  background: transparent;
+  font-family: var(--serif);
+  font-size: 13px;
+  font-style: italic;
+  letter-spacing: .3px;
+  padding-block: 12px;
+  color: var(--muted);
+}
+
+/* Open spacing, a curved reception card and a blush wash between sections. */
+.invitation {
+  padding-top: 85px;
+}
+
+.family-label,
+.gift-role {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  letter-spacing: .4px;
+}
+
+.family h3,
+.gift-card h3 {
+  font-family: var(--script);
+  font-size: clamp(34px, 3.6vw, 47px);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.family h3 {
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+
+.family-symbol {
+  opacity: .65;
+}
+
+.invitation-intro {
+  font-family: var(--serif);
+  font-size: 16px;
+}
+
+.celebration {
+  background: linear-gradient(180deg, var(--paper), #f6e8e2 28%, #f6e8e2 75%, var(--paper));
+  color: var(--wine);
+}
+
+.event-intro > p:not(.eyebrow) {
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: 17px;
+}
+
+.event-intro h2 {
+  font-weight: 400;
+}
+
+.event-flower {
+  font-size: 60px;
+  opacity: .55;
+}
+
+.event-card {
+  border-radius: 180px 180px 28px 28px;
+  outline: none;
+  padding-top: 85px;
+  padding-bottom: 48px;
+  box-shadow: 0 15px 55px #9049500d;
+  border: 1px solid #e3cbb962;
+}
+
+.event-card > .eyebrow {
+  font-size: 15px;
+}
+
+.event-card h3 {
+  font-style: italic;
+}
+
+.event-date-row > span,
+.event-month {
+  font-family: var(--serif);
+  font-size: 13px;
+  letter-spacing: .3px;
+}
+
+.event-address {
+  font-size: 12px;
+}
+
+.countdown-section {
+  border-bottom: none;
+}
+
+.countdown {
+  gap: 14px;
+}
+
+.countdown > div {
+  padding: 15px 0;
+  background: #f3e6dd75;
+  border-radius: 36px 36px 22px 22px;
+}
+
+.countdown span {
+  font-size: 54px;
+  font-style: italic;
+}
+
+.countdown small {
+  font-family: var(--serif);
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+.countdown > b {
+  margin-top: 23px;
+  opacity: .6;
+}
+
+.gallery-heading > p {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+}
+
+.gallery-link {
+  border-radius: 130px 130px 22px 22px;
+}
+
+.gallery-grid figure:nth-child(2) .gallery-link {
+  border-radius: 22px 22px 130px 130px;
+}
+
+.gallery-link > span {
+  border-radius: 50%;
+}
+
+.gallery-grid figcaption {
+  text-align: center;
+  font-style: italic;
+  font-size: 20px;
+}
+
+.gallery-grid figcaption > span {
+  display: none;
+}
+
+.photo-dialog {
+  border: 0;
+  border-radius: 24px;
+}
+
+.photo-dialog img {
+  border-radius: 14px;
+}
+
+.gifts {
+  background: linear-gradient(180deg, var(--paper), #f6e8e2 45%, #f6e8e2 75%, var(--paper));
+  color: var(--wine);
+}
+
+.gifts .section-heading > p:not(.eyebrow) {
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: 16px;
+}
+
+.gift-card {
+  border: 1px solid #e6cfbf75;
+  border-radius: 90px 90px 28px 28px;
+  background: #fffcf6b0;
+  padding-top: 45px;
+  box-shadow: 0 10px 40px #90495008;
+}
+
+.gift-role {
+  color: var(--muted);
+}
+
+.gift-card h3 {
+  margin-top: 0;
+  font-size: 38px;
+}
+
+.gift-placeholder {
+  background: #f5e8df99;
+  border-color: var(--line);
+  color: var(--wine);
+  opacity: .8;
+}
+
+.gift-content > p {
+  color: var(--wine);
+}
+
+.gift-content small {
+  color: var(--muted);
+}
+
+.gift-content .account-number {
+  color: var(--wine);
+}
+
+.copy-account {
+  border-radius: 30px;
+  border-color: var(--line);
+  color: var(--wine);
+}
+
+.thanks h2 {
+  font-size: clamp(38px, 4.5vw, 57px);
+  line-height: 1.45;
+}
+
+.footer-names {
+  font-size: 42px;
+}
+
+.music-toggle {
+  background: var(--paper);
+  color: var(--wine);
+  border-color: var(--line);
+  box-shadow: 0 4px 20px #90495012;
+}
+
+.music-icon {
+  color: var(--wine);
+}
+
+/* Only JS-enhanced elements participate; no-script and reduced-motion stay visible. */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 900ms ease, transform 900ms cubic-bezier(.22, .61, .36, 1);
+}
+
+.reveal.is-visible,
+.reveal:focus-within {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 1000px) {
+  .hero-names {
+    font-size: 35px;
+    gap: 0 6px;
+  }
+
+  .event-date-row > span {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 700px) {
+  .cover {
+    background-size: cover, 240px, 220px;
+    background-position: center, left -105px bottom -65px, right -95px top -65px;
+    padding-top: 28px;
+    padding-bottom: 26px;
+  }
+
+  .cover::before {
+    border-radius: 160px 160px 20px 20px;
+    inset: 13px;
+  }
+
+  .cover .eyebrow {
+    font-size: 12px;
+  }
+
+  .cover h1 {
+    font-size: clamp(52px, 14vw, 63px);
+    line-height: 1.2;
+  }
+
+  .cover-prelude {
+    font-size: 15px;
+  }
+
+  .cover-bottom {
+    font-size: 10px;
+    letter-spacing: .2px;
+  }
+
+  .site-header nav {
+    font-size: 12px;
+  }
+
+  .hero {
+    padding-top: 30px;
+    padding-bottom: 75px;
+  }
+
+  .hero .eyebrow {
+    font-size: 15px;
+  }
+
+  .hero-intro {
+    font-size: 18px;
+    margin-top: 18px;
+  }
+
+  .hero h1 {
+    font-size: 105px;
+  }
+
+  .hero-names {
+    justify-content: center;
+    font-size: 34px;
+    gap: 0 5px;
+  }
+
+  .hero-names i {
+    font-size: 22px;
+  }
+
+  .hero-quote {
+    font-size: 16px;
+  }
+
+  .hero-art {
+    width: 85%;
+  }
+
+  .hero-date > div {
+    font-size: 13px;
+  }
+
+  .hero-date > div > span:last-child {
+    font-size: 11px;
+  }
+
+  .text-link {
+    font-size: 13px;
+  }
+
+  .ribbon {
+    font-size: 10px;
+    gap: 14px;
+  }
+
+  .invitation-intro {
+    font-size: 15px;
+  }
+
+  .family h3 {
+    font-size: 42px;
+  }
+
+  .event-card {
+    border-radius: 160px 160px 26px 26px;
+    padding-top: 70px;
+    padding-bottom: 40px;
+  }
+
+  .event-card > .eyebrow {
+    font-size: 14px;
+  }
+
+  .event-intro > p:not(.eyebrow) {
+    font-size: 16px;
+  }
+
+  .event-address {
+    font-size: 12px;
+  }
+
+  .countdown-section .eyebrow {
+    font-size: 14px;
+    letter-spacing: 0;
+  }
+
+  .countdown {
+    gap: 6px;
+  }
+
+  .countdown > div {
+    width: 58px;
+    padding-block: 12px;
+  }
+
+  .countdown span {
+    font-size: 41px;
+  }
+
+  .countdown small {
+    font-size: 12px;
+    letter-spacing: 0;
+  }
+
+  .countdown > b {
+    margin-top: 15px;
+  }
+
+  .gallery-heading > p,
+  .gifts .section-heading > p:not(.eyebrow) {
+    font-size: 15px;
+  }
+
+  .gallery-link {
+    border-radius: 90px 90px 16px 16px;
+  }
+
+  .gallery-grid figure:nth-child(2) .gallery-link {
+    border-radius: 16px 16px 80px 80px;
+  }
+
+  .gallery-grid figcaption {
+    font-size: 17px;
+  }
+
+  .gift-card {
+    padding-top: 35px;
+  }
+
+  .thanks .eyebrow {
+    font-size: 13px;
+    letter-spacing: 0;
+  }
+
+  .thanks h2 {
+    font-size: 39px;
+  }
+
+  .footer-names {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-names {
+    font-size: 30px;
+    gap: 0 3px;
+  }
+
+  .hero-names i {
+    font-size: 19px;
+  }
+
+  .site-header nav {
+    gap: 10px;
+    font-size: 11px;
+  }
+
+  .countdown > div {
+    width: 54px;
+  }
+
+  .family h3 {
+    font-size: 38px;
+  }
+
+  .event-date-row > span {
+    font-size: 11px;
+  }
+
+  .footer-names {
+    font-size: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .cover.is-opening,
+  .cover.is-opening .cover-frame {
+    animation: none;
+  }
+}
