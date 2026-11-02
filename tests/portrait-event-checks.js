@@ -21,7 +21,7 @@ async (page) => {
     });
     if (!adequateResolution) failures.push(`Insufficient image pixels for a 3x display: ${await image.getAttribute('src')}`);
   }
-  if ((await page.locator('.event-info h3').innerText()) !== 'Lễ Thành hôn') failures.push('Reception title not updated');
+  if ((await page.locator('.event-info h3').innerText()) !== 'Lễ Thành Hôn') failures.push('Reception title not updated');
   for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 844 });
     const centered = await page.locator('#map-link').evaluate(button => {
