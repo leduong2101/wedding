@@ -99,7 +99,7 @@ h3 { color: var(--wine); font-size: 27px; }
 
 /* An unhurried vertical invitation on warm paper. */
 .opening-note { text-align: center; padding-top: 65px; padding-bottom: 30px; }
-.opening-note p { color: var(--wine); font-size: 18px; font-style: italic; line-height: 2.1; margin: 20px auto; max-width: 600px; }
+.opening-note p { color: var(--wine); font-size: clamp(14px, 4vw, 16px); font-style: italic; line-height: 2.1; margin: 20px auto; max-width: 600px; }
 .flourish { color: var(--gold-ink); font-size: 27px; }
 .countdown-section { text-align: center; padding-top: 40px; padding-bottom: 60px; }
 .countdown-section h2 { font-size: clamp(26px, 3vw, 34px); font-weight: 700; }
@@ -220,7 +220,6 @@ h3 { color: var(--wine); font-size: 27px; }
   .cover-date { font-size: 12px; letter-spacing: 2px; }
   .art-note { font-size: 9px; left: 12px; top: 13px; }
   .opening-note { padding-top: 48px; padding-bottom: 20px; }
-  .opening-note p { font-size: 17px; }
   .countdown-section { padding-top: 30px; padding-bottom: 45px; }
   .countdown-section h2 { font-size: 25px; }
   .countdown { gap: 9px; margin-top: 25px; }
@@ -272,6 +271,8 @@ h3 { color: var(--wine); font-size: 27px; }
   .countdown-section h2 { font-size: 23px; }
   .gift-tabs button { padding-inline: 24px; }
 }
+
+#gallery-heading { font-size: clamp(22px, 6.4vw, 34px); }
 
 /* Bound both width and height: a short phone must not inherit tall-phone type.
    svh stays stable while mobile browser controls expand/collapse. */
