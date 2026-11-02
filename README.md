@@ -10,6 +10,8 @@ Stylesheet đang sử dụng là **`styles/invitation.css`**. `styles.css` và `
 
 Thứ tự tên ở bìa và trang đầu là **Tuấn Dương & Thùy Linh**; dấu viết tắt trên phong bì, dấu sáp, chân trang và favicon là **D&L**.
 
+Chữ trang ảnh đầu trên điện thoại tự co theo cả chiều rộng (`vw`) và chiều cao màn hình ổn định (`svh`), có giới hạn bằng CSS `clamp()`/`min()`. Cụm tên/ngày/lời nhắn được thu gọn sát đáy ảnh, không giữ cỡ tên 64px cố định. Khi xoay ngang điện thoại, tên nằm một hàng và ẩn nhãn trang trí “The wedding of”/gợi ý cuộn để dành chỗ cho ảnh. Bố cục desktop không đổi. `tests/mobile-hero-checks.js` kiểm tra kích thước dọc/ngang, tỷ lệ vùng chữ, tên không bị cắt, co theo hai chiều và desktop giữ nguyên.
+
 Yêu cầu Python 3. Chạy trong thư mục dự án:
 
 ```sh
