@@ -10,6 +10,8 @@ Stylesheet đang sử dụng là **`styles/invitation.css`**. `styles.css` và `
 
 Thứ tự tên ở bìa và trang đầu là **Tuấn Dương & Thùy Linh**; dấu viết tắt trên phong bì, dấu sáp, chân trang và favicon là **D&L**.
 
+Có thể mở thiệp bằng cách chạm bất kỳ vị trí nào trên hình phong bì (kể cả dấu sáp) hoặc nút **Chạm để mở thiệp**. Vùng phong bì là nút hỗ trợ Enter/Space; cả hai cách dùng chung hiệu ứng/nhạc, khóa kích hoạt lặp và không thay đổi bố cục. `tests/envelope-open-checks.js` kiểm tra các cách mở này.
+
 Đoạn trích “Hạnh phúc không phải là đích đến…” dùng chữ co giãn 12–14px; tiêu đề “Khoảnh khắc của chúng mình” dùng 18–26px. Ở màn hình rộng 375px, hai phần lần lượt là 12px và 20px; không đổi các tiêu đề khác. Kiểm tra bằng `tests/quote-gallery-type-checks.js` tại 320–1440px.
 
 Chữ trang ảnh đầu trên điện thoại tự co theo cả chiều rộng (`vw`) và chiều cao màn hình ổn định (`svh`), có giới hạn bằng CSS `clamp()`/`min()`. Cụm tên/ngày/lời nhắn được thu gọn sát đáy ảnh, không giữ cỡ tên 64px cố định. Khi xoay ngang điện thoại, tên nằm một hàng và ẩn nhãn trang trí “The wedding of”/gợi ý cuộn để dành chỗ cho ảnh. Bố cục desktop không đổi. `tests/mobile-hero-checks.js` kiểm tra kích thước dọc/ngang, tỷ lệ vùng chữ, tên không bị cắt, co theo hai chiều và desktop giữ nguyên.

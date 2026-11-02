@@ -77,8 +77,10 @@ async function toggleMusic() {
   updateMusicButton();
 }
 musicButton.addEventListener('click', toggleMusic);
-$('#open-invitation').addEventListener('click', () => {
+function openInvitation() {
+  if ($('#open-invitation').disabled) return;
   $('#open-invitation').disabled = true;
+  $('#open-envelope').disabled = true;
   // Start in the click gesture, before any await, for mobile autoplay policies.
   toggleMusic();
   main.inert = false;
@@ -89,7 +91,9 @@ $('#open-invitation').addEventListener('click', () => {
     $('#home').focus({ preventScroll: true });
     revealOnScroll();
   });
-});
+}
+$('#open-invitation').addEventListener('click', openInvitation);
+$('#open-envelope').addEventListener('click', openInvitation);
 
 // Photo paths and accessible descriptions are maintained in config.js.
 const gallery = $('#gallery-grid');
