@@ -53,6 +53,11 @@ async (page) => {
     await page.getByRole('button', { name: 'Đã xác nhận', exact: true }).waitFor();
     check(posts.length === 1 && posts[0].get('count') === '3' && posts[0].get('name') === 'Anh Minh & gia đình', 'One correctly encoded request with total party size');
     check((await page.locator('#rsvp-status').innerText()).includes('Đã lưu'), 'Success only after acknowledgment');
+    const polish = await page.locator('#rsvp').evaluate(section => ({
+      noStorageNotice: !section.textContent.includes('Thông tin xác nhận được gửi đến'),
+      centeredSuccess: getComputedStyle(section.querySelector('#rsvp-status')).textAlign === 'center',
+    }));
+    check(polish.noStorageNotice && polish.centeredSuccess, `RSVP presentation: ${JSON.stringify(polish)}`);
     for (const failure of ['rejected', 'network']) {
       mode = failure;
       await page.reload();
@@ -92,6 +97,7 @@ async (page) => {
     await page.goto('http://127.0.0.1:8000/xac-nhan.html?khach=Ch%E1%BB%8B+Lan');
     await page.waitForFunction(() => document.querySelector('#rsvp-fields')?.disabled === false);
     check(await name.inputValue() === 'Chị Lan', 'Previously published standalone page still works for compatibility');
+    check(!(await page.locator('.rsvp-card').innerText()).includes('Thông tin xác nhận được gửi đến'), 'Standalone compatibility page also omits the storage notice');
     return { inlinePlacement: 'after gallery, before gifts PASS', originalGuestURL: 'PASS', guestName: 'PASS', dropdown: '1–10 PASS', pendingAndDuplicates: 'PASS', confirmedSave: 'PASS', failedSaveAndRetry: 'PASS', decline: 'zero PASS', generalLink: 'PASS', literalText: 'PASS', responsive: '320–1440px PASS', standaloneCompatibility: 'PASS' };
   } finally { await page.unroute('https://script.google.com/macros/s/**'); }
 }

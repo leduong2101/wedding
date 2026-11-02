@@ -18,7 +18,6 @@
 #rsvp-fields:disabled { opacity: .7; }
 #rsvp-fields:disabled label, #rsvp-fields:disabled button { cursor: default; }
 #rsvp-status { margin-top: 18px; font-size: 14px; line-height: 1.7; overflow-wrap: anywhere; }
-#rsvp-status[data-state="success"] { color: #365b38; }
+#rsvp-status[data-state="success"] { color: #365b38; text-align: center; }
 #rsvp-status[data-state="error"] { color: var(--wine-dark); }
-.rsvp-privacy { margin-top: 20px; font-size: 12px; line-height: 1.7; color: var(--muted); }
 .rsvp-back { display: block; width: fit-content; margin: 20px auto 0; color: var(--wine-dark); font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
