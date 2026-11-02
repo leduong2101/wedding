@@ -20,6 +20,16 @@ Mở <http://localhost:8000>. Không mở trực tiếp `index.html` bằng `fil
 
 ## Cập nhật nội dung
 
+### Tạo link riêng cho từng khách
+
+Mở <https://leduong2101.github.io/wedding/tao-link.html>, nhập đầy đủ tên/cách xưng hô (ví dụ **Anh Minh và gia đình**), kiểm tra phần xem trước, bấm **Tạo link**, rồi **Sao chép link** để gửi qua Zalo hoặc tin nhắn. Có thể bấm **Mở thiệp xem thử** trước khi gửi. Nếu sao chép tự động bị chặn, trang chọn sẵn link để bạn sao chép thủ công.
+
+Mỗi link chứa tên riêng trong tham số `khach`, ví dụ `https://leduong2101.github.io/wedding/?khach=Anh+Minh`. Thiệp chỉ hiển thị tên trên phong bì; link gốc không có tên vẫn hiện lời mời chung. Hai khách mở link cùng lúc không ảnh hưởng nhau. Khi đổi tên trong công cụ, link cũ được ẩn để tránh gửi nhầm. Tên được chuẩn hóa khoảng trắng, giới hạn 120 ký tự và hiển thị dạng chữ thuần, không thực thi HTML.
+
+Trang tạo link **công khai, không đăng nhập**, không có cơ sở dữ liệu, danh sách khách, cookie hay lưu tên vào localStorage. Tên nằm trong URL nên có thể xuất hiện trong lịch sử trình duyệt/tin nhắn và nhật ký truy cập của nhà cung cấp hosting; người nhận có thể sửa hoặc chuyển tiếp link. Đây không phải cơ chế xác thực danh tính hay giới hạn khách. Không đưa dữ liệu nhạy cảm vào tên. Công cụ không được gắn nút dẫn trong thiệp nhưng ai biết địa chỉ đều dùng được.
+
+Mã xử lý: `js/guests.js` (chuẩn hóa tên và tạo link), `js/guest-generator.js`, `tao-link.html` và `styles/guest-generator.css`. Khi chạy local, công cụ tạo link local; hãy dùng trang công khai để tạo link gửi khách.
+
 Thông tin động tập trung tại **`js/config.js`**:
 
 - `bride`, `groom`: tên, tên gọi ngắn, bố mẹ và `photo: { src, alt }` cho ảnh chân dung tròn.
@@ -86,6 +96,7 @@ Kiểm thử đếm ngược trước/đúng/sau giờ cưới, trạng thái nh
 - `tests/reference-layout-checks.js`: phong bì/dấu sáp/mở nắp, ảnh bìa toàn màn hình, chân dung tròn, một tiệc chung, MP3 thực tế, hai tab mừng cưới (click, phím mũi tên, Home/End), nốt nhạc trang trí và hành vi không JavaScript.
 - `tests/layout-polish-checks.js`: nút mở thiệp căn giữa, lời ngỏ mới, bỏ lời mời lặp lại, chữ đậm, ba ảnh trang giới thiệu lớn và vừa màn hình, 15 nốt nhạc 40–48px/mờ/chậm đúng hai phần, không chặn thao tác, giảm chuyển động, album không có huy hiệu tròn nhưng vẫn xem lớn được.
 - `tests/portrait-event-checks.js`: tải đúng bản chân dung khung rộng, tiêu đề “Lễ Thành hôn”, chữ bản đồ cân giữa tại 320–1440px; xuất ảnh chụp để kiểm tra bố cục.
+- `tests/guest-browser-checks.js`: nhập tên/xem trước/tạo link, đổi tên làm mất link cũ, sao chép thành công/thất bại, hai khách đồng thời, dữ liệu giống HTML, tên dài trên mobile, thiệp chung và trang tạo link 320–1440px. `tests/guests.test.js` thuộc `npm test`, kiểm tra mã hóa URL/tên tiếng Việt/giới hạn/đường dẫn project.
 
 Khởi động local server trước khi chạy; gọi `browser_run_code_unsafe` với `filename` trỏ đến từng file trong môi trường có Playwright browser tools. Các file này không thuộc `npm test` và dự án không cài Playwright làm dependency.
 

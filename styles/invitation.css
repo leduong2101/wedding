@@ -54,6 +54,7 @@ h3 { color: var(--wine); font-size: 27px; }
 }
 .cover-frame { text-align: center; width: min(100%, 500px); margin-block: auto; padding-block: 25px; flex-shrink: 0; }
 .cover-salutation { font: 12px/1.8 var(--sans); text-transform: uppercase; letter-spacing: 4px; color: #6d594e; margin-bottom: 33px; }
+.guest-name { color: var(--wine); font-size: clamp(22px, 5vw, 30px); font-weight: 700; line-height: 1.5; overflow-wrap: anywhere; margin: -17px auto 25px; max-width: 100%; }
 .envelope {
   width: 350px; height: 230px; max-width: 100%; position: relative; perspective: 1000px; margin: 0 auto 42px;
   background: #e2c999; border: 1px solid #d0ad6d; border-radius: 6px; box-shadow: 0 18px 28px #4b33282e;

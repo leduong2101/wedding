@@ -4,9 +4,13 @@ import { createMusicController } from './music.js';
 import { getGiftDetails } from './gifts.js';
 import { dismissCover, revealOnScroll } from './motion.js';
 import { setupGiftTabs } from './gift-tabs.js';
+import { guestNameFromSearch } from './guests.js';
 
 const $ = selector => document.querySelector(selector);
 const cover = $('#cover');
+const guestName = guestNameFromSearch(window.location.search);
+$('#guest-name').textContent = guestName;
+$('#guest-name').hidden = !guestName;
 const main = $('#main');
 const musicButton = $('#music-toggle');
 const audio = $('#background-music');
