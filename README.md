@@ -36,7 +36,7 @@ Mã xử lý: `js/guests.js` (chuẩn hóa tên và tạo link), `js/guest-gener
 
 ### Xác nhận tham dự qua Google Sheets
 
-Nút **Xác nhận tham dự** nằm dưới thẻ tiệc cưới, mở `xac-nhan.html` và mang theo tên trong `khach`. Khách có thể chỉnh tên; link không có tên yêu cầu nhập tên. Lời nhắn căn giữa, ba dòng và “Trân trọng!” tách dòng riêng. Không có ô lời nhắn.
+Form **Xác nhận tham dự** nằm ngay trong `index.html`, **sau album và trước Mừng cưới**. Khách mở link tên đã gửi trước đây chỉ cần cuộn xuống để xác nhận, không chuyển trang, không cần tạo/gửi lại link. Tên tự điền từ `khach`; khách có thể chỉnh tên, link không có tên yêu cầu nhập tên. Lời nhắn căn giữa, ba dòng và “Trân trọng!” tách dòng riêng. Không có ô lời nhắn. `xac-nhan.html` được giữ tương thích với địa chỉ đã công bố, nhưng thiệp không dẫn khách sang trang đó; cả hai dùng chung bộ xử lý `js/rsvp-page.js` và endpoint.
 
 - Chọn **Sẽ tham dự** mới hiện ô chọn **Số người tham dự** từ 1–10 (tổng người đến, gồm người được mời và người đi cùng).
 - Chọn **Không thể tham dự** ẩn ô số người và gửi `0`.
@@ -117,7 +117,7 @@ Kiểm thử đếm ngược trước/đúng/sau giờ cưới, trạng thái nh
 - `tests/layout-polish-checks.js`: nút mở thiệp căn giữa, lời ngỏ mới, bỏ lời mời lặp lại, chữ đậm, ba ảnh trang giới thiệu lớn và vừa màn hình, 15 nốt nhạc 25px/mờ/chậm đúng hai phần, không chặn thao tác, giảm chuyển động, album không có huy hiệu tròn nhưng vẫn xem lớn được.
 - `tests/portrait-event-checks.js`: tải đúng bản chân dung khung rộng, tiêu đề “Lễ Thành hôn”, chữ bản đồ cân giữa tại 320–1440px; xuất ảnh chụp để kiểm tra bố cục.
 - `tests/guest-browser-checks.js`: nhập tên/xem trước/tạo link, đổi tên làm mất link cũ, sao chép thành công/thất bại, hai khách đồng thời, dữ liệu giống HTML, tên dài trên mobile, thiệp chung và trang tạo link 320–1440px. `tests/guests.test.js` thuộc `npm test`, kiểm tra mã hóa URL/tên tiếng Việt/giới hạn/đường dẫn project.
-- `tests/rsvp.test.js`, `tests/apps-script.test.js`: dữ liệu tham dự/không, số người 1–10, xác nhận thành công/thất bại, timeout, chống công thức Sheets và lỗi ghi. `tests/rsvp-browser-checks.js`: tự điền tên từ thiệp, dropdown, không có lời nhắn, chờ kết quả trước khi báo lưu, khóa bấm trùng, lỗi và thử lại, form 320–1440px.
+- `tests/rsvp.test.js`, `tests/apps-script.test.js`: dữ liệu tham dự/không, số người 1–10, xác nhận thành công/thất bại, timeout, chống công thức Sheets và lỗi ghi. `tests/rsvp-browser-checks.js`: form ngay trong link thiệp tên cũ, thứ tự album → xác nhận → mừng cưới, tự điền tên, dropdown, không có lời nhắn, chờ kết quả trước khi báo lưu, khóa bấm trùng, lỗi và thử lại, form 320–1440px, tương thích trang xác nhận riêng đã công bố.
 
 Khởi động local server trước khi chạy; gọi `browser_run_code_unsafe` với `filename` trỏ đến từng file trong môi trường có Playwright browser tools. Các file này không thuộc `npm test` và dự án không cài Playwright làm dependency.
 

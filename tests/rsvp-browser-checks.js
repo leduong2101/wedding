@@ -3,6 +3,15 @@ async (page) => {
   let mode = 'success';
   let posts = [];
   let releasePending;
+  const openCover = async () => {
+    await page.getByRole('button', { name: 'Chạm để mở thiệp', exact: true }).click();
+    await page.locator('#cover').waitFor({ state: 'hidden' });
+    await page.waitForFunction(() => document.querySelector('#rsvp-fields')?.disabled === false);
+  };
+  const openInvitation = async (search = '') => {
+    await page.goto('http://127.0.0.1:8000/' + search);
+    await openCover();
+  };
   // Intercept the external boundary: regression tests must never add real guest rows.
   await page.route('https://script.google.com/macros/s/**', async route => {
     const request = route.request();
@@ -16,10 +25,11 @@ async (page) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('http://127.0.0.1:8000/?khach=' + encodeURIComponent('Anh Minh & gia đình'));
-    await page.getByRole('button', { name: 'Chạm để mở thiệp', exact: true }).click();
-    await page.locator('#cover').waitFor({ state: 'hidden' });
-    await page.getByRole('link', { name: 'Xác nhận tham dự', exact: true }).click();
-    check(new URL(page.url()).pathname === '/xac-nhan.html', 'RSVP link opens the new page');
+    check(await page.locator('#rsvp form').count() === 1, 'The existing personalized invitation contains the RSVP form');
+    await openCover();
+    check(new URL(page.url()).pathname === '/', 'RSVP stays inside the original invitation URL');
+    check(await page.locator('#main > section').evaluateAll(sections => sections.map(section => section.id).join(',').includes('gallery,rsvp,gifts')), 'RSVP sits immediately after album and before wedding gifts');
+    check(await page.locator('a[href*="xac-nhan.html"]').count() === 0, 'Invitation does not send guests to a separate page');
     const name = page.getByLabel('Tên khách mời', { exact: true });
     await name.waitFor();
     check(await name.inputValue() === 'Anh Minh & gia đình', 'Guest name carries over automatically');
@@ -46,6 +56,7 @@ async (page) => {
     for (const failure of ['rejected', 'network']) {
       mode = failure;
       await page.reload();
+      await openCover();
       await no.check();
       check(await count.isHidden(), 'Declining hides count');
       await page.getByRole('button', { name: 'Xác nhận', exact: true }).click();
@@ -57,7 +68,7 @@ async (page) => {
     mode = 'success';
     await page.getByRole('button', { name: 'Xác nhận', exact: true }).click();
     await page.getByRole('button', { name: 'Đã xác nhận', exact: true }).waitFor();
-    await page.goto('http://127.0.0.1:8000/xac-nhan.html');
+    await openInvitation();
     check(await name.inputValue() === '', 'General invitation allows manually entering a name');
     await yes.check();
     const beforeBlankSubmit = posts.length;
@@ -67,16 +78,20 @@ async (page) => {
     await page.getByRole('button', { name: 'Xác nhận', exact: true }).click();
     await page.locator('#rsvp-status[data-state="error"]').waitFor();
     check(posts.length === beforeBlankSubmit, 'Whitespace-only name is rejected');
-    await page.goto('http://127.0.0.1:8000/xac-nhan.html?khach=' + encodeURIComponent('<img src=x onerror=alert(1)>'));
+    await openInvitation('?khach=' + encodeURIComponent('<img src=x onerror=alert(1)>'));
     check((await name.inputValue()).startsWith('<img') && await page.locator('.rsvp-card img').count() === 0, 'Guest names are input text, not injected HTML');
-    await page.goto('http://127.0.0.1:8000/xac-nhan.html?khach=Anh+Minh');
+    await openInvitation('?khach=Anh+Minh');
     for (const width of [320, 375, 390, 768, 1440]) {
       await page.setViewportSize({ width, height: 844 });
       await yes.check();
       check(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `Form fits ${width}px`);
     }
     await page.setViewportSize({ width: 375, height: 667 });
-    await page.screenshot({ path: '/tmp/opencode/wedding-rsvp.png', fullPage: true });
-    return { guestName: 'PASS', dropdown: '1–10 PASS', pendingAndDuplicates: 'PASS', confirmedSave: 'PASS', failedSaveAndRetry: 'PASS', decline: 'zero PASS', generalLink: 'PASS', literalText: 'PASS', responsive: '320–1440px PASS' };
+    await name.focus();
+    await page.locator('#rsvp').screenshot({ path: '/tmp/opencode/wedding-rsvp-inline.png' });
+    await page.goto('http://127.0.0.1:8000/xac-nhan.html?khach=Ch%E1%BB%8B+Lan');
+    await page.waitForFunction(() => document.querySelector('#rsvp-fields')?.disabled === false);
+    check(await name.inputValue() === 'Chị Lan', 'Previously published standalone page still works for compatibility');
+    return { inlinePlacement: 'after gallery, before gifts PASS', originalGuestURL: 'PASS', guestName: 'PASS', dropdown: '1–10 PASS', pendingAndDuplicates: 'PASS', confirmedSave: 'PASS', failedSaveAndRetry: 'PASS', decline: 'zero PASS', generalLink: 'PASS', literalText: 'PASS', responsive: '320–1440px PASS', standaloneCompatibility: 'PASS' };
   } finally { await page.unroute('https://script.google.com/macros/s/**'); }
 }

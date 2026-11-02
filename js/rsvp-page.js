@@ -10,7 +10,8 @@ const button = document.querySelector('#rsvp-submit');
 const status = document.querySelector('#rsvp-status');
 const guest = guestNameFromSearch(location.search);
 name.value = guest;
-document.querySelector('#back-to-invitation').href = guest ? createGuestLink(guest, location.href) : './';
+const backLink = document.querySelector('#back-to-invitation');
+if (backLink) backLink.href = guest ? createGuestLink(guest, location.href) : './';
 let pending = false;
 let saved = false;
 

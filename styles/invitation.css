@@ -273,7 +273,6 @@ h3 { color: var(--wine); font-size: 27px; }
 }
 
 #gallery-heading { font-size: clamp(18px, calc(100vw / 18.75), 26px); }
-.rsvp-link { display: flex; width: max-content; max-width: 100%; margin: 28px auto 0; }
 
 /* Bound both width and height: a short phone must not inherit tall-phone type.
    svh stays stable while mobile browser controls expand/collapse. */
