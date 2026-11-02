@@ -4,7 +4,7 @@ Thiệp đỏ truyền thống trên nền kem, HTML/CSS/JavaScript thuần, kh�
 
 Giao diện tham khảo bố cục thiệp Toàn–Loan: phong bì kem có dấu sáp đỏ và hiệu ứng mở nắp; ảnh bìa phủ màn hình với tên viết tay; lời ngỏ, đếm ngược, chân dung tròn, một tiệc chung trên nền tối, album dạng lưới, hai tab mừng cưới và lời cảm ơn. Không có thanh menu. Không sử dụng ảnh, QR hay mã nguồn của cặp đôi mẫu.
 
-Stylesheet đang sử dụng là **`styles/invitation.css`**. `styles.css` và `styles/romantic.css` là các phiên bản cũ được giữ lại, không còn được nạp bởi `index.html`. Hiệu ứng mở thiệp và hiện dần khi cuộn nằm trong `js/motion.js`; chuyển tab mừng cưới trong `js/gift-tabs.js`. Nốt nhạc rơi chỉ trong ảnh bìa và phần tiệc: mỗi phần 15 nốt, cỡ 40–48px, độ mờ 18%, chu kỳ 26 giây, không chặn thao tác. Hiệu ứng tự tắt khi thiết bị chọn giảm chuyển động. Không có JavaScript thì phong bì không chặn nội dung và cả hai mục mừng cưới đều đọc được.
+Stylesheet đang sử dụng là **`styles/invitation.css`**. `styles.css` và `styles/romantic.css` là các phiên bản cũ được giữ lại, không còn được nạp bởi `index.html`. Hiệu ứng mở thiệp và hiện dần khi cuộn nằm trong `js/motion.js`; chuyển tab mừng cưới trong `js/gift-tabs.js`. Nốt nhạc rơi chỉ trong ảnh bìa và phần tiệc: mỗi phần 15 nốt, cỡ 25px, độ mờ 18%, chu kỳ 26 giây, không chặn thao tác. Hiệu ứng tự tắt khi thiết bị chọn giảm chuyển động. Không có JavaScript thì phong bì không chặn nội dung và cả hai mục mừng cưới đều đọc được.
 
 ## Xem trên máy
 
@@ -94,7 +94,7 @@ Kiểm thử đếm ngược trước/đúng/sau giờ cưới, trạng thái nh
 - `tests/browser-checks.js`: nhạc thực tế, album/bàn phím, mobile 320–1440px, không JavaScript, múi giờ, ngày cưới, nhạc lỗi, đường dẫn project và lỗi tài sản.
 - `tests/soft-design-checks.js`: chuyển cảnh/focus, tương phản chữ, font tên, bố cục mềm mại, hiện dần khi cuộn, giảm chuyển động.
 - `tests/reference-layout-checks.js`: phong bì/dấu sáp/mở nắp, ảnh bìa toàn màn hình, chân dung tròn, một tiệc chung, MP3 thực tế, hai tab mừng cưới (click, phím mũi tên, Home/End), nốt nhạc trang trí và hành vi không JavaScript.
-- `tests/layout-polish-checks.js`: nút mở thiệp căn giữa, lời ngỏ mới, bỏ lời mời lặp lại, chữ đậm, ba ảnh trang giới thiệu lớn và vừa màn hình, 15 nốt nhạc 40–48px/mờ/chậm đúng hai phần, không chặn thao tác, giảm chuyển động, album không có huy hiệu tròn nhưng vẫn xem lớn được.
+- `tests/layout-polish-checks.js`: nút mở thiệp căn giữa, lời ngỏ mới, bỏ lời mời lặp lại, chữ đậm, ba ảnh trang giới thiệu lớn và vừa màn hình, 15 nốt nhạc 25px/mờ/chậm đúng hai phần, không chặn thao tác, giảm chuyển động, album không có huy hiệu tròn nhưng vẫn xem lớn được.
 - `tests/portrait-event-checks.js`: tải đúng bản chân dung khung rộng, tiêu đề “Lễ Thành hôn”, chữ bản đồ cân giữa tại 320–1440px; xuất ảnh chụp để kiểm tra bố cục.
 - `tests/guest-browser-checks.js`: nhập tên/xem trước/tạo link, đổi tên làm mất link cũ, sao chép thành công/thất bại, hai khách đồng thời, dữ liệu giống HTML, tên dài trên mobile, thiệp chung và trang tạo link 320–1440px. `tests/guests.test.js` thuộc `npm test`, kiểm tra mã hóa URL/tên tiếng Việt/giới hạn/đường dẫn project.
 

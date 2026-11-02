@@ -39,8 +39,8 @@ async (page) => {
       check(await notes.evaluate(element => getComputedStyle(element).pointerEvents === 'none'), `${section} notes cannot block clicks`);
       check(await notes.locator('span').evaluateAll(elements => elements.length === 15 && elements.every(element => {
         const style = getComputedStyle(element);
-        return /^[♪♫♩♬]$/.test(element.textContent) && parseFloat(style.fontSize) >= 40 && parseFloat(style.fontSize) <= 48 && Number(style.opacity) <= .22 && parseFloat(style.animationDuration) >= 20;
-      })), `${section} has fifteen 40–48px notes that remain faint and slow`);
+        return /^[♪♫♩♬]$/.test(element.textContent) && parseFloat(style.fontSize) === 25 && Number(style.opacity) <= .22 && parseFloat(style.animationDuration) >= 20;
+      })), `${section} has fifteen 25px notes that remain faint and slow`);
     }
   }
   check(await page.locator('.music-notes').count() === 2, 'Notes are limited to the hero and reception');
