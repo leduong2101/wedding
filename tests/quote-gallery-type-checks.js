@@ -10,11 +10,11 @@ async (page) => {
       const heading = document.querySelector('#gallery-heading');
       return { width: innerWidth, quote: parseFloat(getComputedStyle(quote).fontSize), heading: parseFloat(getComputedStyle(heading).fontSize), fits: [quote, heading].every(el => el.scrollWidth <= el.clientWidth) };
     });
-    if (result.quote < 12 || result.quote > 14 || result.heading < 17 || result.heading > 26 || !result.fits) throw Error(JSON.stringify(result));
+    if (result.quote < 12 || result.quote > 14 || result.heading < 18 || result.heading > 26 || !result.fits) throw Error(JSON.stringify(result));
     results.push(result);
   }
   const mobile = results.find(result => result.width === 375);
-  if (mobile.quote !== 12 || mobile.heading !== 18) throw Error('375px phone should show a 12px quote and 18px gallery title');
+  if (mobile.quote !== 12 || mobile.heading !== 20) throw Error('375px phone should show a 12px quote and 20px gallery title');
   if (results[0].quote >= results[2].quote || results[0].heading >= results[2].heading) throw Error('Typography must scale with screen size');
   return results;
 }

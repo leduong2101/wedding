@@ -272,7 +272,7 @@ h3 { color: var(--wine); font-size: 27px; }
   .gift-tabs button { padding-inline: 24px; }
 }
 
-#gallery-heading { font-size: clamp(17px, 4.8vw, 26px); }
+#gallery-heading { font-size: clamp(18px, calc(100vw / 18.75), 26px); }
 
 /* Bound both width and height: a short phone must not inherit tall-phone type.
    svh stays stable while mobile browser controls expand/collapse. */
