@@ -34,6 +34,22 @@ Trang tạo link **công khai, không đăng nhập**, không có cơ sở dữ 
 
 Mã xử lý: `js/guests.js` (chuẩn hóa tên và tạo link), `js/guest-generator.js`, `tao-link.html` và `styles/guest-generator.css`. Khi chạy local, công cụ tạo link local; hãy dùng trang công khai để tạo link gửi khách.
 
+### Xác nhận tham dự qua Google Sheets
+
+Nút **Xác nhận tham dự** nằm dưới thẻ tiệc cưới, mở `xac-nhan.html` và mang theo tên trong `khach`. Khách có thể chỉnh tên; link không có tên yêu cầu nhập tên. Lời nhắn căn giữa, ba dòng và “Trân trọng!” tách dòng riêng. Không có ô lời nhắn.
+
+- Chọn **Sẽ tham dự** mới hiện ô chọn **Số người tham dự** từ 1–10 (tổng người đến, gồm người được mời và người đi cùng).
+- Chọn **Không thể tham dự** ẩn ô số người và gửi `0`.
+- Nhấn **Xác nhận** gửi form POST tới Google Apps Script; khóa thao tác khi đang gửi và sau khi thành công để hạn chế bấm trùng. Chỉ thông báo “Đã lưu” khi nhận được JSON `{ "ok": true }`, không dùng `no-cors`. Lỗi mạng/timeout 30 giây không đồng nghĩa chưa ghi: thông báo yêu cầu liên hệ trước khi gửi lại, tránh lưu trùng.
+- Bảng tính riêng tư có tab **Xác nhận tham dự**, tự tạo khi nhận lần đầu, gồm bốn cột: **Thời gian xác nhận · Tên khách · Trạng thái · Số người tham dự**. Mã chỉ thêm dòng; không sửa/xóa nội dung có sẵn. Tên được lưu dạng văn bản để không chạy công thức Sheets.
+- Trang không lưu tên trong cookie/localStorage. Chỉ khi bấm gửi mới chuyển tên và xác nhận cho Google. Endpoint công khai, không xác thực khách, không có chống spam mạnh hay chống trùng giữa nhiều tab/lần tải lại; cần lọc các dòng thử/trùng thủ công. Không công khai bảng tính hoặc đưa thông tin khách đã phản hồi vào Git.
+
+Mã frontend: `js/rsvp.js` (endpoint, kiểm tra dữ liệu, gửi và đọc kết quả), `js/rsvp-page.js`, `styles/rsvp.css`. Mẫu Apps Script: `scripts/rsvp-apps-script.gs`; ID bảng tính không phải mật khẩu và không cấp quyền đọc bảng.
+
+Để cài lại, chủ bảng tính mở **Tiện ích mở rộng → Apps Script**, dán mẫu vào `Code.gs`, lưu, chọn **Triển khai → Tùy chọn triển khai mới → Ứng dụng web**, thực thi với tư cách **Tôi**, truy cập **Bất kỳ ai**. Chủ tài khoản tự duyệt/cấp quyền bảng tính; khách không đăng nhập. Giữ quyền chia sẻ bảng tính **Bị hạn chế**. Sao chép URL `/exec` vào `rsvpEndpoint` trong `js/rsvp.js`. Nếu cập nhật mã Apps Script, sửa triển khai sang **phiên bản mới**; chỉ lưu file không cập nhật bản đang chạy. Có thể đặt múi giờ của bảng tính và dự án Apps Script sang Việt Nam để hiển thị giờ xác nhận địa phương. GET endpoint chỉ báo tình trạng dịch vụ, không trả tên/danh sách khách và không xác minh được quyền ghi Sheets; cần thử gửi thật để kiểm tra kết nối.
+
+`tests/rsvp-browser-checks.js` chặn mọi request Apps Script bằng phản hồi thử, không thêm khách thật. Không chạy kiểm thử ghi thật tự động trong CI. Khi kiểm tra kết nối thực tế, dùng tên rõ ràng **KIỂM THỬ KẾT NỐI (có thể xóa)** và báo chủ bảng xóa dòng này khi kiểm tra xong.
+
 Thông tin động tập trung tại **`js/config.js`**:
 
 - `bride`, `groom`: tên, tên gọi ngắn, bố mẹ và `photo: { src, alt }` cho ảnh chân dung tròn.
@@ -101,6 +117,7 @@ Kiểm thử đếm ngược trước/đúng/sau giờ cưới, trạng thái nh
 - `tests/layout-polish-checks.js`: nút mở thiệp căn giữa, lời ngỏ mới, bỏ lời mời lặp lại, chữ đậm, ba ảnh trang giới thiệu lớn và vừa màn hình, 15 nốt nhạc 25px/mờ/chậm đúng hai phần, không chặn thao tác, giảm chuyển động, album không có huy hiệu tròn nhưng vẫn xem lớn được.
 - `tests/portrait-event-checks.js`: tải đúng bản chân dung khung rộng, tiêu đề “Lễ Thành hôn”, chữ bản đồ cân giữa tại 320–1440px; xuất ảnh chụp để kiểm tra bố cục.
 - `tests/guest-browser-checks.js`: nhập tên/xem trước/tạo link, đổi tên làm mất link cũ, sao chép thành công/thất bại, hai khách đồng thời, dữ liệu giống HTML, tên dài trên mobile, thiệp chung và trang tạo link 320–1440px. `tests/guests.test.js` thuộc `npm test`, kiểm tra mã hóa URL/tên tiếng Việt/giới hạn/đường dẫn project.
+- `tests/rsvp.test.js`, `tests/apps-script.test.js`: dữ liệu tham dự/không, số người 1–10, xác nhận thành công/thất bại, timeout, chống công thức Sheets và lỗi ghi. `tests/rsvp-browser-checks.js`: tự điền tên từ thiệp, dropdown, không có lời nhắn, chờ kết quả trước khi báo lưu, khóa bấm trùng, lỗi và thử lại, form 320–1440px.
 
 Khởi động local server trước khi chạy; gọi `browser_run_code_unsafe` với `filename` trỏ đến từng file trong môi trường có Playwright browser tools. Các file này không thuộc `npm test` và dự án không cài Playwright làm dependency.
 

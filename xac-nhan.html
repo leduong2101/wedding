@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f0e6">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>Xác nhận tham dự · Tuấn Dương & Thùy Linh</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles/invitation.css">
+  <link rel="stylesheet" href="styles/rsvp.css">
+</head>
+<body class="rsvp-page">
+  <main class="rsvp-card">
+    <p class="rsvp-monogram" aria-hidden="true">D<i>&</i>L</p>
+    <h1>Xác nhận tham dự</h1>
+    <p class="rsvp-couple">Tuấn Dương & Thùy Linh · 29.11.2026</p>
+    <p class="rsvp-intro">Hãy xác nhận sự có mặt của bạn<br>để chúng mình chuẩn bị tiếp đón<br>một cách chu đáo nhất.<em>Trân trọng!</em></p>
+    <noscript><p>Bạn cần bật JavaScript để gửi xác nhận tham dự.</p></noscript>
+    <form id="rsvp-form" aria-busy="false">
+      <fieldset id="rsvp-fields" disabled>
+        <legend class="sr-only">Thông tin xác nhận tham dự</legend>
+        <label for="rsvp-name">Tên khách mời</label>
+        <input id="rsvp-name" name="name" type="text" required autocomplete="name" placeholder="Nhập tên của bạn">
+        <fieldset class="rsvp-attendance">
+          <legend>Bạn có tham dự không?</legend>
+          <label><input type="radio" name="attendance" value="yes" required> <span>Sẽ tham dự</span></label>
+          <label><input type="radio" name="attendance" value="no" required> <span>Không thể tham dự</span></label>
+        </fieldset>
+        <div id="rsvp-count-group" hidden>
+          <label for="rsvp-count">Số người tham dự</label>
+          <select id="rsvp-count" name="count" disabled>
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
+          </select>
+        </div>
+        <button id="rsvp-submit" class="button button-outline" type="submit">Xác nhận</button>
+      </fieldset>
+    </form>
+    <p id="rsvp-status" role="status" aria-live="polite" aria-atomic="true"></p>
+    <p class="rsvp-privacy">Thông tin xác nhận được gửi đến Google Sheets của chúng mình, không hiển thị công khai trên thiệp.</p>
+    <a class="rsvp-back" id="back-to-invitation" href="./">← Trở về thiệp mời</a>
+  </main>
+  <script type="module" src="js/rsvp-page.js"></script>
+</body>
+</html>
