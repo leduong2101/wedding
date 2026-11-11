@@ -12,6 +12,8 @@ export const wedding = {
       { time: '18:00', label: 'Khai tiệc' },
     ],
     venue: 'Queen Bee Luxury',
+    venuePrefix: 'Tầng 2 Trung tâm tiệc cưới',
+    lunarDate: '(Tức ngày 21 tháng 10 năm Bính Ngọ)',
     address: '20 Láng Hạ, phường Láng, Hà Nội',
     photo: { src: 'assets/photos/GAA04132-retouched.webp', alt: 'Thùy Linh và Tuấn Dương mặc áo dài đỏ trước nhà có hỷ' },
     mapUrl: 'https://www.google.com/maps/place/Queen+Bee+Luxury/@21.0159815,105.8142402,18.82z/data=!4m6!3m5!1s0x3135ab63791d9ee5:0x9e6cca93a08ef5c!8m2!3d21.0162328!4d105.8144029!16s%2Fg%2F11cmpb3fnn?hl=vi',
@@ -20,8 +22,8 @@ export const wedding = {
   photos: [
     { src: 'assets/photos/GAA03342-retouched.webp', alt: 'Cô dâu chú rể tựa trán bên nhau giữa khu vườn', caption: 'Ngày mình chung đôi' },
     { src: 'assets/photos/GAA04599-retouched.webp', alt: 'Cô dâu chú rể đứng bên hoa tím trong trang phục cưới', caption: 'Một lời hẹn trăm năm' },
-    { src: 'assets/photos/GAA03494-retouched.webp', alt: 'Cô dâu chú rể nắm tay nhau trên bãi cỏ xanh', caption: 'Hạnh phúc đong đầy' },
     { src: 'assets/photos/GAA05079-retouched.webp', alt: 'Cô dâu chú rể mỉm cười khoe nhẫn cưới', caption: 'Nụ cười bên nhau' },
+    { src: 'assets/photos/GAA03494-retouched.webp', alt: 'Cô dâu chú rể nắm tay nhau trên bãi cỏ xanh', caption: 'Hạnh phúc đong đầy' },
     { src: 'assets/photos/GAA02717-retouched.webp', alt: 'Cô dâu chú rể bên nhau trên lối đi giữa khu vườn', caption: 'Cùng nhau đi tiếp' },
     { src: 'assets/photos/GAA04999-retouched.webp', alt: 'Cô dâu chú rể khoác tay nhau trong trang phục cưới', caption: 'Trọn vẹn yêu thương' },
   ],

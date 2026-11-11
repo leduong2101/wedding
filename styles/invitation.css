@@ -169,7 +169,10 @@ h3 { color: var(--wine); font-size: 27px; }
 .event-calendar > span { padding-block: 7px; border-block: 1px solid currentColor; font: 12px/1.5 var(--sans); text-transform: uppercase; }
 .event-calendar b { font-weight: 400; }
 .event-calendar > strong { font-size: clamp(52px, 12vw, 72px); font-weight: 400; line-height: 1.1; }
+.event-lunar-date { font-size: clamp(12px, 3.2vw, 15px); line-height: 1.8; font-style: italic; margin-top: -6px; }
 .event-venue-intro { font-size: 13px; margin-top: 20px; }
+.event-venue-prefix { font-size: clamp(16px, 4vw, 20px); line-height: 1.5; font-weight: 700; color: var(--green); margin-top: 18px; }
+.event-info .event-venue-prefix + h4 { margin-top: 4px; }
 .event-arrival-label { font-size: 12px; color: var(--muted); margin-top: 18px; }
 .event-schedule { max-width: 640px; margin: 40px auto 0; text-align: center; }
 #timeline-heading { font: 48px/1.4 var(--script); color: inherit; }

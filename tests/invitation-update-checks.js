@@ -8,7 +8,10 @@ async (page) => {
   const invitation = page.locator('#celebration');
   check((await invitation.innerText()).toLocaleLowerCase('vi').includes('trân trọng kính mời'), 'Page three presents the formal invitation');
   check(await page.locator('#event-guest').innerText() === 'Anh Minh và gia đình', 'Formal invitation uses the same guest name as the original link');
-  check((await invitation.innerText()).includes('chung vui cùng hai gia đình chúng mình'), 'Invitation copy follows the supplied reference');
+  check(await page.locator('.event-invitation-copy').innerText() === 'Đến dự bữa tiệc thân mật\nchung vui cùng gia đình chúng tôi.', 'Invitation copy matches the v2 annotation');
+  check(await page.locator('.event-arrival-label').innerText() === 'Được tổ chức vào hồi', 'Time introduction matches the v2 annotation');
+  check(await page.locator('.event-calendar + .event-lunar-date').innerText() === '(Tức ngày 21 tháng 10 năm Bính Ngọ)', 'Lunar date appears immediately after the solar date');
+  check(await page.locator('.event-venue-prefix').innerText() === 'Tầng 2 Trung tâm tiệc cưới', 'Venue includes the requested second floor');
   check(await page.locator('#event-guest + .event-invitation-copy').count() === 1, 'Invitation copy sits immediately below the guest name');
   check(await page.locator('.event-info .event-invitation-copy').count() === 0, 'Invitation copy is not repeated below the ceremony title');
   const schedule = await page.locator('.event-timeline li').allInnerTexts();
@@ -33,5 +36,15 @@ async (page) => {
   await page.goto('http://127.0.0.1:8000/?khach=' + encodeURIComponent('<img src=x onerror=alert(1)>'));
   await page.waitForFunction(() => document.querySelector('#cover') && !document.querySelector('#cover').hidden);
   check((await page.locator('#event-guest').innerText()).startsWith('<img') && await page.locator('#event-guest img').count() === 0, 'Personalized formal invitation treats names as literal text');
+  const fallbackContext = await page.context().browser().newContext({ javaScriptEnabled: false, viewport: { width: 375, height: 844 } });
+  try {
+    const fallback = await fallbackContext.newPage();
+    await fallback.goto('http://127.0.0.1:8000/');
+    check(await fallback.locator('.event-lunar-date').innerText() === '(Tức ngày 21 tháng 10 năm Bính Ngọ)', 'No JavaScript: lunar date is retained');
+    check(await fallback.locator('.event-venue-prefix').innerText() === 'Tầng 2 Trung tâm tiệc cưới', 'No JavaScript: second floor is retained');
+    check((await fallback.locator('.gallery-link').nth(2).getAttribute('href')).includes('05079') && (await fallback.locator('.gallery-link').nth(3).getAttribute('href')).includes('03494'), 'No JavaScript: middle gallery photos retain the new order');
+  } finally {
+    await fallbackContext.close();
+  }
   return { formalInvitation: 'PASS', personalizedAndGeneralGuest: 'PASS', schedule: '17:00 / 17:30 / 18:00 PASS', dateAndVenue: 'PASS', sectionOrder: 'PASS', responsive: '320–1440px PASS' };
 }

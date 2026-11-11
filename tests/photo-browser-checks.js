@@ -5,7 +5,7 @@ async (page) => {
   await page.goto('http://127.0.0.1:8000');
   await page.getByRole('button', { name: 'Chạm để mở thiệp', exact: true }).click();
   await page.locator('#cover').waitFor({ state: 'hidden' });
-  const expected = ['04981', '04671', '04303', '04528', '04132', '03342', '04599', '03494', '05079', '02717', '04999'];
+  const expected = ['04981', '04671', '04303', '04528', '04132', '03342', '04599', '05079', '03494', '02717', '04999'];
   const images = page.locator('#main img[src*="assets/photos/"]');
   if (await images.count() !== expected.length) throw new Error('Expected all eleven requested photos');
   for (let i = 0; i < expected.length; i++) {

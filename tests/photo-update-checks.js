@@ -12,7 +12,7 @@ async page => {
     await image.scrollIntoViewIfNeeded();
     await image.evaluate(image => image.decode());
   }
-  const order = ['03342', '04599', '03494', '05079', '02717', '04999'];
+  const order = ['03342', '04599', '05079', '03494', '02717', '04999'];
   const links = page.locator('.gallery-link');
   check(await links.count() === 6, 'Gallery has six photos');
   for (let i = 0; i < order.length; i++) {

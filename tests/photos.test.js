@@ -9,7 +9,7 @@ test('approved wedding photos are mapped to their requested sections', () => {
     assert.ok(existsSync(photo.src));
     assert.doesNotMatch(photo.alt, /minh họa|chờ ảnh/);
   }
-  assert.deepEqual(wedding.photos.map(photo => photo.src), ['03342', '04599', '03494', '05079', '02717', '04999'].map(id => `assets/photos/GAA${id}-retouched.webp`));
+  assert.deepEqual(wedding.photos.map(photo => photo.src), ['03342', '04599', '05079', '03494', '02717', '04999'].map(id => `assets/photos/GAA${id}-retouched.webp`));
   const html = readFileSync('index.html', 'utf8');
   for (const photo of [wedding.heroPhoto, wedding.groom.photo, wedding.bride.photo, wedding.couplePhoto, wedding.event.photo, ...wedding.photos]) {
     assert.ok(existsSync(photo.src));
