@@ -155,7 +155,7 @@ h3 { color: var(--wine); font-size: 27px; }
 .event-info h3 { font-size: 26px; color: var(--green); margin-top: 13px; }
 .event-time { color: var(--green); font-size: 40px; line-height: 1.4; margin-top: 12px; }
 .event-date { font-size: 15px; color: var(--ink); }
-.event-info h4 { font-size: 24px; color: var(--green); margin-top: 18px; }
+.event-info h4 { font-size: 24px; font-weight: 700; color: var(--green); margin-top: 18px; }
 .event-address { font-size: 14px; margin: 6px auto 20px; color: var(--muted); }
 .button-dark-outline { border-color: var(--green); color: var(--green); background: transparent; font-size: 14px; }
 .button-dark-outline:hover { background: var(--soft); }
