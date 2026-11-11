@@ -6,7 +6,9 @@ async (page) => {
   await page.locator('#cover').waitFor({ state: 'visible' });
   const problems = [];
   const closing = await page.locator('.thanks').innerText();
-  if (!closing.includes('Cảm ơn bạn đã dành tình cảm cho chúng mình!') || !closing.includes('Sự hiện diện của bạn chính là món quà ý nghĩa nhất, và chúng mình vô cùng trân quý khi được cùng bạn chia sẻ niềm hạnh phúc trong ngày trọng đại này.')) problems.push('Closing text does not match the supplied reference');
+  if (!closing.includes('Cảm ơn bạn đã dành tình cảm cho gia đình chúng tôi!') || !closing.includes('Sự hiện diện của bạn chính là món quà ý nghĩa nhất, và gia đình chúng tôi vô cùng trân quý khi được cùng bạn chia sẻ niềm hạnh phúc trong ngày trọng đại này.')) problems.push('Closing text does not match the requested family wording');
+  if (await page.locator('#gallery-heading').innerText() !== 'Love story') problems.push('Gallery heading does not match Love story');
+  if (!(await page.locator('.rsvp-intro').innerText()).includes('để gia đình chuẩn bị tiếp đón')) problems.push('RSVP introduction does not use family wording');
   const cover = await page.locator('#cover').evaluate(el => ({ flower: getComputedStyle(el).backgroundImage.includes('flowers-orchid.svg'), envelope: getComputedStyle(el.querySelector('.envelope-pocket')).backgroundColor }));
   if (!cover.flower) problems.push('Cover has no floral decoration');
   const rgb = cover.envelope.match(/\d+/g).map(Number);

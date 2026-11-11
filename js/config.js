@@ -8,8 +8,8 @@ export const wedding = {
     date: '2026-11-29T17:00:00+07:00',
     timeline: [
       { time: '17:00', label: 'Đón khách' },
-      { time: '17:30', label: 'Tổ chức hôn lễ' },
-      { time: '18:00', label: 'Khai tiệc' },
+      { time: '17:15', label: 'Tổ chức hôn lễ' },
+      { time: '17:30', label: 'Khai tiệc' },
     ],
     venue: 'Queen Bee Luxury',
     venuePrefix: 'Tầng 2 Trung tâm tiệc cưới',

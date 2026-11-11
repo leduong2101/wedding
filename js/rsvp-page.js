@@ -53,11 +53,11 @@ form.addEventListener('submit', async event => {
     await submitRsvp(payload);
     saved = true;
     status.dataset.state = 'success';
-    status.textContent = 'Đã lưu xác nhận của bạn. Chúng mình trân trọng cảm ơn!';
+    status.textContent = 'Đã lưu xác nhận của bạn. Gia đình trân trọng cảm ơn!';
     button.textContent = 'Đã xác nhận';
   } catch {
     status.dataset.state = 'error';
-    status.textContent = 'Chưa xác nhận được kết quả lưu. Nếu mạng bị ngắt, thông tin có thể đã được gửi; hãy liên hệ chúng mình trước khi gửi lại để tránh trùng.';
+    status.textContent = 'Chưa xác nhận được kết quả lưu. Nếu mạng bị ngắt, thông tin có thể đã được gửi; hãy liên hệ gia đình trước khi gửi lại để tránh trùng.';
     button.textContent = 'Xác nhận';
   } finally {
     pending = false;

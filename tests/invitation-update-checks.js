@@ -15,7 +15,8 @@ async (page) => {
   check(await page.locator('#event-guest + .event-invitation-copy').count() === 1, 'Invitation copy sits immediately below the guest name');
   check(await page.locator('.event-info .event-invitation-copy').count() === 0, 'Invitation copy is not repeated below the ceremony title');
   const schedule = await page.locator('.event-timeline li').allInnerTexts();
-  check(schedule.length === 3 && ['17:00', '17:30', '18:00'].every((time, i) => schedule[i].includes(time)), 'Timeline shows the three requested times in order');
+  check(schedule.length === 3 && ['17:00', '17:15', '17:30'].every((time, i) => schedule[i].includes(time)), 'Timeline shows the three requested times in order');
+  check((await page.locator('.event-timeline time').evaluateAll(elements => elements.map(el => el.dateTime))).join(',') === '17:00,17:15,17:30', 'Machine-readable timeline matches visible times');
   check(['Đón khách', 'Tổ chức hôn lễ', 'Khai tiệc'].every((label, i) => schedule[i].includes(label)), 'Timeline labels match the requested ceremony');
   check((await invitation.innerText()).includes('Queen Bee Luxury') && (await invitation.innerText()).includes('20 Láng Hạ'), 'Actual venue is retained, not replaced by reference venue');
   check(await page.locator('[data-date="day"]').first().innerText() === '29' && await page.locator('.event-calendar [data-date="month"]').innerText() === '11' && await page.locator('.event-calendar [data-date="year"]').innerText() === '2026', 'Reference calendar layout uses the actual wedding date');
@@ -42,9 +43,10 @@ async (page) => {
     await fallback.goto('http://127.0.0.1:8000/');
     check(await fallback.locator('.event-lunar-date').innerText() === '(Tức ngày 21 tháng 10 năm Bính Ngọ)', 'No JavaScript: lunar date is retained');
     check(await fallback.locator('.event-venue-prefix').innerText() === 'Tầng 2 Trung tâm tiệc cưới', 'No JavaScript: second floor is retained');
+    check((await fallback.locator('.event-timeline time').allTextContents()).join(',') === '17:00,17:15,17:30', 'No JavaScript: updated timeline is retained');
     check((await fallback.locator('.gallery-link').nth(2).getAttribute('href')).includes('05079') && (await fallback.locator('.gallery-link').nth(3).getAttribute('href')).includes('03494'), 'No JavaScript: middle gallery photos retain the new order');
   } finally {
     await fallbackContext.close();
   }
-  return { formalInvitation: 'PASS', personalizedAndGeneralGuest: 'PASS', schedule: '17:00 / 17:30 / 18:00 PASS', dateAndVenue: 'PASS', sectionOrder: 'PASS', responsive: '320–1440px PASS' };
+  return { formalInvitation: 'PASS', personalizedAndGeneralGuest: 'PASS', schedule: '17:00 / 17:15 / 17:30 PASS', dateAndVenue: 'PASS', sectionOrder: 'PASS', responsive: '320–1440px PASS' };
 }
