@@ -5,9 +5,9 @@ async (page) => {
   await page.goto('http://127.0.0.1:8000');
   await page.getByRole('button', { name: 'Chạm để mở thiệp', exact: true }).click();
   await page.locator('#cover').waitFor({ state: 'hidden' });
-  const expected = ['04981', '04671', '04303', '04528', '04132', '03832', '03386', '02717'];
-  const images = page.locator('#main img');
-  if (await images.count() !== expected.length) throw new Error('Expected all eight requested photos');
+  const expected = ['04981', '04671', '04303', '04528', '04132', '03342', '04599', '03494', '05079', '02717', '04999'];
+  const images = page.locator('#main img[src*="assets/photos/"]');
+  if (await images.count() !== expected.length) throw new Error('Expected all eleven requested photos');
   for (let i = 0; i < expected.length; i++) {
     const image = images.nth(i);
     await image.scrollIntoViewIfNeeded();
@@ -18,7 +18,7 @@ async (page) => {
   await page.locator('.couple-keepsake').screenshot({ path: '/tmp/opencode/wedding-couple-photo.png' });
   await page.locator('.gallery-link').nth(1).click();
   await page.locator('#dialog-image').evaluate(image => image.decode());
-  if (!(await page.locator('#dialog-image').getAttribute('src')).includes('03386')) throw new Error('Incorrect album enlargement');
+  if (!(await page.locator('#dialog-image').getAttribute('src')).includes('04599')) throw new Error('Incorrect album enlargement');
   await page.keyboard.press('Escape');
   for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 844 });

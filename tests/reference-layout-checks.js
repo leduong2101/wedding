@@ -30,7 +30,7 @@ async (page) => {
   check(await page.locator('#gift-groom').isVisible() && await page.locator('#gift-bride').isHidden(), 'Only the selected gift panel is visible');
   await bride.click();
   check(await bride.getAttribute('aria-selected') === 'true' && await page.locator('#gift-bride').isVisible() && await page.locator('#gift-groom').isHidden(), 'Selecting bride switches to her gift panel');
-  check(await page.locator('#gift-bride').getByText('QR sẽ được cập nhật', { exact: true }).isVisible(), 'Pending bride QR remains honest');
+  check(await page.locator('#gift-bride img').isVisible(), 'Supplied bride QR is visible in the bride tab');
   await page.keyboard.press('ArrowLeft');
   check(await groom.evaluate(element => element === document.activeElement) && await groom.getAttribute('aria-selected') === 'true', 'Arrow keys select and focus the adjacent gift tab');
   await page.keyboard.press('End');
@@ -64,7 +64,7 @@ async (page) => {
   const emptyAlbumContext = await page.context().browser().newContext({ reducedMotion: 'reduce' });
   const emptyAlbum = await emptyAlbumContext.newPage();
   try {
-    await emptyAlbum.route('**/js/config.js', async route => {
+    await emptyAlbum.route(/\/js\/config\.js(?:\?.*)?$/, async route => {
       const response = await route.fetch();
       const original = await response.text();
       await route.fulfill({ response, body: original + '\nwedding.photos = []; wedding.heroPhoto = { src: "assets/flowers.svg", alt: "Independent hero fixture" };' });

@@ -6,7 +6,7 @@ Giao diện giữ bố cục thiệp hiện tại: phong bì xanh có dấu sáp
 
 Mẫu cập nhật do chủ thiệp cung cấp tại `~/Downloads/update_wedding_card/{invitation,ending,color}` chỉ dùng làm tham khảo bố cục/màu/nội dung; không đưa các ảnh chụp màn hình có tên khách hoặc ảnh cặp đôi khác vào website. `assets/flowers-orchid.svg` và `assets/wedding-timeline.svg` là minh họa SVG tự vẽ, tải cục bộ, không chặn thao tác. Màu chủ đạo chỉnh tại `:root` của `styles/invitation.css` (`--paper`, `--green`, `--green-deep`, `--surface`, `--edge`); tên token cũ `--wine`/`--wine-dark` được giữ làm bí danh xanh để không đổi giao diện lập trình của các thành phần.
 
-Các tham chiếu CSS/favicon/app/config đang gắn phiên bản `?v=20261111` để trình duyệt lấy bảng màu và lịch trình mới thay vì dùng bộ nhớ đệm cũ; không đổi URL thiệp hoặc link tên khách đã gửi. Khi cập nhật các tài nguyên này về sau, tăng cùng phiên bản ở các trang liên quan.
+Các tham chiếu CSS/favicon gắn phiên bản `?v=20261111`; app/config dùng `?v=20261111-photos` để lấy ảnh và QR mới thay vì bộ nhớ đệm cũ. Không đổi URL thiệp hoặc link tên khách đã gửi. Khi cập nhật tài nguyên về sau, tăng phiên bản ở các tham chiếu liên quan.
 
 Trang tiệc hiển thị tên từ `khach` dạng chữ thuần, thiếu tên dùng “Quý khách”; ngày/tháng/năm lấy từ ngày cưới cấu hình, không dùng ngày/nhà hàng trong ảnh mẫu. Ba mốc timeline nằm tại `event.timeline` trong `js/config.js`, có nội dung HTML dự phòng khi tắt JavaScript. Khi đổi lịch trình, cập nhật cả các thẻ `<time datetime>` và nội dung dự phòng trong `index.html`. Trang cuối dùng nguyên văn lời cảm ơn ở mẫu `ending`, không thêm ảnh mới hoặc thay ảnh đang dùng.
 
@@ -66,7 +66,7 @@ Thông tin động tập trung tại **`js/config.js`**:
 - `event`: thời điểm đón khách có múi giờ `+07:00`, `timeline` gồm giờ/nhãn của ba mốc, nhà hàng, địa chỉ, Google Maps và `photo: { src, alt }` minh họa cho thẻ tiệc cưới.
 - `photos`: danh sách ảnh album, mô tả `alt`, chú thích `caption`. Nếu không có `heroPhoto` thì dùng ảnh album đầu tiên cho bìa. Đặt ảnh trong `assets/`, dùng đường dẫn tương đối, ví dụ `assets/anh-cuoi-01.webp`. Nên nén ảnh xuống dưới khoảng 300 KB/ảnh, chiều rộng 1000–1600px; không dùng ảnh gốc dung lượng lớn.
 - `music`: thay `src` bằng đường dẫn nhạc bạn có quyền sử dụng, ví dụ `assets/nhac-cuoi.mp3`; sửa `label` cho đúng tên bài. Nhạc bắt đầu khi bấm **Mở thiệp**, phát lặp và có nút bật/tắt. Trình duyệt có thể dừng khi khóa màn hình/chuyển ứng dụng.
-- `gifts`: mặc định `null` nên chỉ hiện **QR sẽ được cập nhật**. Không có số tài khoản hoặc QR giả.
+- `gifts`: đã cấu hình hai QR thật do chủ thiệp cung cấp; mỗi người có ảnh QR, ngân hàng, chủ tài khoản và nút sao chép riêng. Nếu gỡ cấu hình thì cần đồng thời sửa nội dung dự phòng trong HTML.
 
 **Thiệp phát lặp 70 giây đầu Beautiful in White (00:00–01:10)** tại `assets/beautiful-in-white-70s.mp3`. Người dùng đã xác nhận có quyền sử dụng công khai và yêu cầu giữ bài này khi đăng GitHub Pages; bản cắt 70 giây được đưa vào Git. Nguồn và giới hạn xác minh độc lập được ghi trong `assets/music-source.md`. File đầy đủ, bản cắt 67 giây cũ, thư mục `downloads/` và ảnh JPG gốc trong `image/` tiếp tục được Git-ignore, chỉ giữ trên máy. Không đưa token hoặc thông tin đăng nhập lên GitHub.
 
@@ -86,11 +86,13 @@ gifts: {
 
 QR phải là ảnh cục bộ `.png`, `.jpg`, `.jpeg` hoặc `.webp` trong `assets/`. Chỉ cấu hình đủ cả bốn trường mới hiện hướng dẫn thanh toán và nút sao chép. **Tự quét kiểm tra ngân hàng, tài khoản và chủ tài khoản trước khi công khai.** Sao chép cần HTTPS hoặc localhost; nếu trình duyệt không hỗ trợ, trang hiển thị số để sao chép thủ công.
 
-Ảnh thật đã được ghép từ folder `image/` vào các bản WebP trong `assets/photos/`: bìa `4981`, chú rể `4671`, cô dâu `4303`, ảnh đôi `4528`, thẻ tiệc `4132`, album lần lượt `3832`, `3386`, `2717`. `4999` không dùng; mọi ảnh gốc giữ nguyên. Bản web được xoay theo EXIF, bỏ metadata, thu nhỏ; hai ảnh chân dung được cắt riêng để vừa khung tròn. Các ghi chú ảnh minh họa đã được gỡ khỏi trang.
+Ảnh đã chỉnh sửa lấy từ `~/Downloads/update_wedding_card/new_image/`, xuất thành các file `GAAxxxxx-retouched.webp` trong `assets/photos/`: trang 1/bìa `4981`, trang 3/ảnh đôi `4528`, trang 4/thẻ tiệc `4132`; album sáu ảnh theo thứ tự `3342 → 4599 → 3494 → 5079 → 2717 → 4999`. Ảnh `3494` lấy từ `GAA03494_(2).jpg`; `5079` là số ảnh đã được chủ thiệp đính chính. Trang 2 giữ nguyên ảnh hiện tại. Bản web xoay theo EXIF, bỏ metadata, thu nhỏ tối đa 1600×2400 (ảnh đôi 2000×3000), WebP chất lượng 90. Không thay đổi hoặc xóa các ảnh gốc/bản web cũ.
 
-Hai ảnh bìa/ảnh đôi hiện dùng bản `GAA04981-centered.webp` và `GAA04528-centered-hq.webp`, cắt riêng để hai bạn cân giữa thay vì căn theo phông nền trống. Bản ảnh WebP trước và ảnh JPG gốc vẫn giữ nguyên. Chân dung hiển thị 154px trên điện thoại, 175px trên máy tính; ảnh đôi rộng tối đa 576px (480px trên điện thoại), tăng khoảng 20% so với trước nhưng giới hạn theo chiều rộng màn hình, chừa ít nhất 8px mỗi bên. Số đếm ngược, tiêu đề đếm ngược và tên bố mẹ được in đậm. Album không có biểu tượng tròn đè ảnh, vẫn bấm xem lớn được. Nút mở thiệp hiển thị “Chạm để mở thiệp”, không còn dòng gợi ý nghe nhạc bên dưới.
+Ảnh bìa/ảnh đôi dùng bản đã chỉnh sửa với khung hiển thị CSS hiện tại. Chân dung hiển thị 154px trên điện thoại, 175px trên máy tính; ảnh đôi rộng tối đa 576px (480px trên điện thoại), giới hạn theo chiều rộng màn hình, chừa ít nhất 8px mỗi bên. Số đếm ngược, tiêu đề đếm ngược và tên bố mẹ được in đậm. Album không có biểu tượng tròn đè ảnh, vẫn bấm xem lớn được. Nút mở thiệp hiển thị “Chạm để mở thiệp”, không còn dòng gợi ý nghe nhạc bên dưới.
 
-Chân dung dùng `GAA04671-waist-hq.webp` và `GAA04303-waist-hq.webp`, xuất trực tiếp từ JPG gốc ở 1200×1200, chất lượng WebP 95; cô dâu lấy khung xuống thấp thêm. Ảnh đôi được xuất từ JPG gốc ở 2000×2500, chất lượng 95, không phóng nội suy bản web cũ. Cả ba ảnh đủ mật độ điểm ảnh cho kích thước ô hiện tại trên màn hình 3x. Hai dòng mời dưới tiêu đề “Cô dâu & Chú rể” đã được bỏ. Tiêu đề thẻ sự kiện là “Lễ Thành hôn”; chữ “Xem bản đồ” được căn giữa riêng, mũi tên đặt lệch phải không chiếm chỗ của chữ.
+Chân dung giữ nguyên `GAA04671-waist-hq.webp` và `GAA04303-waist-hq.webp`, xuất trực tiếp từ JPG gốc ở 1200×1200, chất lượng WebP 95; cô dâu lấy khung xuống thấp thêm. Chân dung và ảnh đôi đủ mật độ điểm ảnh cho kích thước ô hiện tại trên màn hình 3x. Hai dòng mời dưới tiêu đề “Cô dâu & Chú rể” đã được bỏ. Tiêu đề thẻ sự kiện là “Lễ Thành hôn”; chữ “Xem bản đồ” được căn giữa riêng, mũi tên đặt lệch phải không chiếm chỗ của chữ.
+
+Hai QR lấy từ `~/Downloads/update_wedding_card/QR/{bride.jpeg,groom.jpg}`, chỉ cắt phần mã với lề trắng, không vẽ lại/nén mất dữ liệu, lưu PNG tại `assets/qr-{bride,groom}.png`. Thông tin chủ tài khoản/số tài khoản lấy từ ảnh cung cấp; ngân hàng cô dâu được đối chiếu BIN VietQR. Không thực hiện giao dịch để kiểm thử. Khi thay QR, chủ thiệp nên quét bằng ứng dụng ngân hàng và xác nhận đúng người nhận trước khi gửi khách.
 
 Khi đổi ảnh tiếp, cập nhật config và cả alt/src dự phòng tương ứng trong `index.html`. Thông báo phát nhạc tự lấy tên bài từ `music.label`. Nếu đổi ngày, tên hay địa điểm: cập nhật cả các bản nội dung dự phòng trong `index.html` để khách không bật JavaScript vẫn đọc đúng thông tin, cùng title và meta description. Khi JavaScript hoạt động, config tự đồng bộ các thông tin đó.
 
@@ -105,7 +107,7 @@ Tài khoản GitHub cho riêng dự án dùng hồ sơ CLI tại `$HOME/.config/
 3. Mở **Settings → Pages → Build and deployment → Deploy from a branch**.
 4. Chọn nhánh chứa mã nguồn (thường `main`) và thư mục **/(root)**, rồi **Save**.
 5. Chờ GitHub triển khai. Link sẽ có dạng `https://TEN_TAI_KHOAN.github.io/` hoặc `https://TEN_TAI_KHOAN.github.io/thiep-cuoi/`.
-6. Mở link trên điện thoại, kiểm tra nhạc, giờ cưới, bản đồ, ảnh và QR trước khi gửi khách. Nhạc 70 giây đã được cho phép đưa vào Git theo xác nhận của người dùng; QR hiện vẫn chờ cập nhật.
+6. Mở link trên điện thoại, kiểm tra nhạc, giờ cưới, bản đồ, ảnh và QR trước khi gửi khách. Nhạc 70 giây đã được cho phép đưa vào Git theo xác nhận của người dùng; hai QR đã được cung cấp và hiển thị đúng tab.
 
 Không dùng đường dẫn `/assets/...` vì sẽ hỏng dưới link project. Tất cả tài sản hiện tại dùng đường dẫn tương đối, không có hotlink, Google Fonts hay dịch vụ thống kê. Repository Pages thường công khai; **chỉ đưa lên thông tin gia đình/tài khoản mà bạn đồng ý công khai**, không bao giờ đưa mật khẩu/token vào dự án. Khách có link không phải là kiểm soát truy cập riêng tư.
 
@@ -125,6 +127,7 @@ Kiểm thử đếm ngược trước/đúng/sau giờ cưới, trạng thái nh
 - `tests/layout-polish-checks.js`: nút mở thiệp căn giữa, lời ngỏ mới, bỏ lời mời lặp lại, chữ đậm, ba ảnh trang giới thiệu lớn và vừa màn hình, 15 nốt nhạc 25px/mờ/chậm đúng hai phần, không chặn thao tác, giảm chuyển động, album không có huy hiệu tròn nhưng vẫn xem lớn được.
 - `tests/portrait-event-checks.js`: tải đúng bản chân dung khung rộng, tiêu đề “Lễ Thành hôn”, chữ bản đồ cân giữa tại 320–1440px; xuất ảnh chụp để kiểm tra bố cục.
 - `tests/invitation-update-checks.js`: lời mời trang tiệc, tên khách/tên chung/tên giống HTML, ba mốc 17:00–17:30–18:00, đúng ngày/địa điểm và thứ tự phần, không tràn ở 320–1440px. `tests/green-cream-checks.js`: lời cảm ơn theo mẫu, nền kem/xanh/hoa trắng, độ tương phản chữ và ảnh chụp kiểm tra trực quan.
+- `tests/photo-update.test.js` và `tests/photo-update-checks.js`: ảnh chỉnh sửa đúng trang, chân dung không đổi, thứ tự sáu ảnh và xem lớn từng ảnh, hai tab QR/sao chép đúng người nhận (clipboard giả lập, không giao dịch), không tràn 320–1440px.
 - `tests/guest-browser-checks.js`: nhập tên/xem trước/tạo link, đổi tên làm mất link cũ, sao chép thành công/thất bại, hai khách đồng thời, dữ liệu giống HTML, tên dài trên mobile, thiệp chung và trang tạo link 320–1440px. `tests/guests.test.js` thuộc `npm test`, kiểm tra mã hóa URL/tên tiếng Việt/giới hạn/đường dẫn project.
 - `tests/rsvp.test.js`, `tests/apps-script.test.js`: dữ liệu tham dự/không, số người 1–10, xác nhận thành công/thất bại, timeout, chống công thức Sheets và lỗi ghi. `tests/rsvp-browser-checks.js`: form ngay trong link thiệp tên cũ, thứ tự album → xác nhận → mừng cưới, tự điền tên, dropdown, không có lời nhắn, chờ kết quả trước khi báo lưu, khóa bấm trùng, lỗi và thử lại, form 320–1440px, tương thích trang xác nhận riêng đã công bố.
 

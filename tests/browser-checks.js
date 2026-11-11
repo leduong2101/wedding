@@ -32,8 +32,8 @@ async (page) => {
     check(await page.getByText(name, { exact: true }).count() > 0, `Approved content: ${name}`);
   }
   check((await page.locator('#map-link').getAttribute('href')).includes('google.com/maps/place/Queen+Bee+Luxury'), 'Directions use approved Maps link');
-  check(await page.getByText('QR sẽ được cập nhật', { exact: true }).count() === 2, 'Both gifts safely show pending QR');
-  check(await page.locator('.copy-account').count() === 0, 'Missing accounts have no copy action');
+  check(await page.locator('.gift-content img').count() === 2, 'Both gifts show supplied QR images');
+  check(await page.locator('.copy-account').count() === 2, 'Both supplied accounts have copy actions');
   await page.locator('.gallery-link').first().click();
   check(await page.locator('#photo-dialog').evaluate(dialog => dialog.open), 'Album opens accessible photo dialog');
   await page.keyboard.press('Escape');

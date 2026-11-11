@@ -1,4 +1,4 @@
-import { wedding } from './config.js?v=20261111';
+import { wedding } from './config.js?v=20261111-photos';
 import { getCountdown } from './countdown.js';
 import { createMusicController } from './music.js';
 import { getGiftDetails } from './gifts.js';
