@@ -2,8 +2,8 @@
 export const wedding = {
   bride: { name: 'Vũ Thùy Linh', shortName: 'Thùy Linh', father: 'Vũ Trung Nghĩa', mother: 'Nghiêm Thị Vượng', photo: { src: 'assets/photos/GAA04303-waist-hq.webp', alt: 'Cô dâu Thùy Linh trong váy cưới trắng' } },
   groom: { name: 'Lê Tuấn Dương', shortName: 'Tuấn Dương', father: 'Lê Văn Hán', mother: 'Đỗ Thị Thanh', photo: { src: 'assets/photos/GAA04671-waist-hq.webp', alt: 'Chú rể Tuấn Dương trong bộ vest đen' } },
-  heroPhoto: { src: 'assets/photos/GAA04981-retouched.webp', alt: 'Thùy Linh và Tuấn Dương bên nhau trong trang phục cưới' },
-  couplePhoto: { src: 'assets/photos/GAA04528-retouched.webp', alt: 'Cô dâu chú rể bên những đóa hoa tím' },
+  heroPhoto: { src: 'assets/photos/GAA04981-retouched-centered.webp', alt: 'Thùy Linh và Tuấn Dương bên nhau trong trang phục cưới' },
+  couplePhoto: { src: 'assets/photos/GAA04528-retouched-centered.webp', alt: 'Cô dâu chú rể bên những đóa hoa tím' },
   event: {
     date: '2026-11-29T17:00:00+07:00',
     timeline: [

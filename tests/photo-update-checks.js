@@ -6,7 +6,7 @@ async page => {
   await page.goto('http://127.0.0.1:8000/?khach=Anh+Minh');
   await page.getByRole('button', { name: 'Chạm để mở thiệp', exact: true }).click();
   await page.locator('#cover').waitFor({ state: 'hidden' });
-  for (const [selector, file] of [['#hero-photo', 'GAA04981-retouched.webp'], ['[data-couple-photo]', 'GAA04528-retouched.webp'], ['[data-event-photo]', 'GAA04132-retouched.webp'], ['[data-person-photo="groom"]', 'GAA04671-waist-hq.webp'], ['[data-person-photo="bride"]', 'GAA04303-waist-hq.webp']]) {
+  for (const [selector, file] of [['#hero-photo', 'GAA04981-retouched-centered.webp'], ['[data-couple-photo]', 'GAA04528-retouched-centered.webp'], ['[data-event-photo]', 'GAA04132-retouched.webp'], ['[data-person-photo="groom"]', 'GAA04671-waist-hq.webp'], ['[data-person-photo="bride"]', 'GAA04303-waist-hq.webp']]) {
     const image = page.locator(selector);
     check((await image.getAttribute('src')).endsWith(file), 'Correct photo: ' + selector);
     await image.scrollIntoViewIfNeeded();
