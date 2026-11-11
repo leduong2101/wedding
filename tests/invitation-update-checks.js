@@ -9,6 +9,8 @@ async (page) => {
   check((await invitation.innerText()).toLocaleLowerCase('vi').includes('trân trọng kính mời'), 'Page three presents the formal invitation');
   check(await page.locator('#event-guest').innerText() === 'Anh Minh và gia đình', 'Formal invitation uses the same guest name as the original link');
   check((await invitation.innerText()).includes('chung vui cùng hai gia đình chúng mình'), 'Invitation copy follows the supplied reference');
+  check(await page.locator('#event-guest + .event-invitation-copy').count() === 1, 'Invitation copy sits immediately below the guest name');
+  check(await page.locator('.event-info .event-invitation-copy').count() === 0, 'Invitation copy is not repeated below the ceremony title');
   const schedule = await page.locator('.event-timeline li').allInnerTexts();
   check(schedule.length === 3 && ['17:00', '17:30', '18:00'].every((time, i) => schedule[i].includes(time)), 'Timeline shows the three requested times in order');
   check(['Đón khách', 'Tổ chức hôn lễ', 'Khai tiệc'].every((label, i) => schedule[i].includes(label)), 'Timeline labels match the requested ceremony');
