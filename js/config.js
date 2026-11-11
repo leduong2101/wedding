@@ -6,6 +6,11 @@ export const wedding = {
   couplePhoto: { src: 'assets/photos/GAA04528-centered-hq.webp', alt: 'Cô dâu chú rể bên những đóa hoa tím' },
   event: {
     date: '2026-11-29T17:00:00+07:00',
+    timeline: [
+      { time: '17:00', label: 'Đón khách' },
+      { time: '17:30', label: 'Tổ chức hôn lễ' },
+      { time: '18:00', label: 'Khai tiệc' },
+    ],
     venue: 'Queen Bee Luxury',
     address: '20 Láng Hạ, phường Láng, Hà Nội',
     photo: { src: 'assets/photos/GAA04132.webp', alt: 'Thùy Linh và Tuấn Dương mặc áo dài đỏ trước nhà có hỷ' },

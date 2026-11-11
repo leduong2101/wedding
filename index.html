@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f0e6">
+  <meta name="theme-color" content="#f7f5ec">
   <meta name="description" content="Trân trọng kính mời bạn đến chung vui cùng Vũ Thùy Linh & Lê Tuấn Dương. 17:00 ngày 29.11.2026 tại Queen Bee Luxury, Hà Nội.">
   <title>Tuấn Dương & Thùy Linh · Thiệp cưới 29.11.2026</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon.svg?v=20261111" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/dancing-script.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="styles/invitation.css">
-  <link rel="stylesheet" href="styles/rsvp.css">
+  <link rel="stylesheet" href="styles/invitation.css?v=20261111">
+  <link rel="stylesheet" href="styles/rsvp.css?v=20261111">
 </head>
 <body>
   <a class="skip-link" href="#invitation">Đến nội dung thiệp</a>
@@ -80,16 +80,28 @@
 
     <section class="celebration section-pad" id="celebration" aria-labelledby="celebration-heading">
       <div class="music-notes" aria-hidden="true"><span>♪</span><span>♫</span><span>♩</span><span>♪</span><span>♬</span><span>♩</span><span>♫</span><span>♪</span><span>♬</span><span>♩</span><span>♫</span><span>♪</span><span>♬</span><span>♩</span><span>♫</span></div>
-      <div class="section-heading"><h2 id="celebration-heading">Hẹn bạn trong ngày cưới</h2><p>Sự hiện diện của bạn là niềm vinh hạnh<br>và là món quà quý dành cho hai gia đình.</p></div>
+      <div class="section-heading"><h2 id="celebration-heading">Trân trọng kính mời</h2><p class="event-guest" id="event-guest">Quý khách</p></div>
       <article class="event-card">
         <div class="event-art"><img data-event-photo src="assets/photos/GAA04132.webp" alt="Thùy Linh và Tuấn Dương mặc áo dài đỏ trước nhà có hỷ" width="1200" height="1800" loading="lazy"></div>
         <div class="event-info"><span class="event-tag">Tiệc chung hai gia đình</span><h3>Lễ Thành Hôn</h3>
-          <p class="event-time" data-date="time">17:00</p><p class="event-date"><span data-date="weekday">Chủ nhật</span>, <span data-date="short">29.11.2026</span></p>
+          <p class="event-invitation-copy">Tham dự tiệc mừng<br>chung vui cùng hai gia đình chúng mình.</p>
+          <p class="event-arrival-label">Đón khách từ</p>
+          <p class="event-time" data-date="time">17:00</p><p class="event-date" data-date="weekday">Chủ nhật</p>
+          <div class="event-calendar" aria-label="Ngày 29 tháng 11 năm 2026"><span>Tháng <b data-date="month">11</b></span><strong data-date="day">29</strong><span>Năm <b data-date="year">2026</b></span></div>
+          <p class="event-venue-intro">Hôn lễ được tổ chức tại</p>
           <h4 data-bind="event.venue">Queen Bee Luxury</h4><p class="event-address" data-bind="event.address">20 Láng Hạ, phường Láng, Hà Nội</p>
           <a class="button button-dark-outline" id="map-link" href="https://www.google.com/maps/place/Queen+Bee+Luxury/@21.0159815,105.8142402,18.82z/data=!4m6!3m5!1s0x3135ab63791d9ee5:0x9e6cca93a08ef5c!8m2!3d21.0162328!4d105.8144029!16s%2Fg%2F11cmpb3fnn?hl=vi" target="_blank" rel="noopener noreferrer"><span>Xem bản đồ</span><span class="map-arrow" aria-hidden="true">↗</span></a>
           <small>Giờ Việt Nam (GMT+7)</small>
         </div>
       </article>
+      <div class="event-schedule" aria-labelledby="timeline-heading">
+        <h3 id="timeline-heading">Timeline</h3>
+        <ol class="event-timeline">
+          <li><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><use href="assets/wedding-timeline.svg#arrival"></use></svg><time datetime="17:00" data-bind="event.timeline.0.time">17:00</time><span data-bind="event.timeline.0.label">Đón khách</span></li>
+          <li><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><use href="assets/wedding-timeline.svg#ceremony"></use></svg><time datetime="17:30" data-bind="event.timeline.1.time">17:30</time><span data-bind="event.timeline.1.label">Tổ chức hôn lễ</span></li>
+          <li><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><use href="assets/wedding-timeline.svg#dinner"></use></svg><time datetime="18:00" data-bind="event.timeline.2.time">18:00</time><span data-bind="event.timeline.2.label">Khai tiệc</span></li>
+        </ol>
+      </div>
     </section>
 
     <section class="gallery section-pad" id="gallery" aria-labelledby="gallery-heading">
@@ -141,14 +153,22 @@
       </div>
     </section>
 
-    <footer class="thanks section-pad"><span class="thanks-monogram" aria-hidden="true">D<i>&</i>L</span><h2 class="sr-only">Lời cảm ơn</h2><p>Cảm ơn bạn đã dành thời gian<br>đến chung vui cùng gia đình chúng mình.</p><p class="footer-names"><span data-bind="groom.name">Lê Tuấn Dương</span> & <span data-bind="bride.name">Vũ Thùy Linh</span></p><p class="footer-date" data-date="numeric">29 . 11 . 2026</p><a class="back-top" href="#home">Về đầu thiệp ↑</a></footer>
+    <footer class="thanks section-pad">
+      <span class="thanks-monogram" aria-hidden="true">D<i>&</i>L</span>
+      <h2 class="sr-only">Lời cảm ơn</h2>
+      <p>Cảm ơn bạn đã dành tình cảm cho chúng mình!</p>
+      <p class="thanks-message">Sự hiện diện của bạn chính là món quà ý nghĩa nhất, và chúng mình vô cùng trân quý khi được cùng bạn chia sẻ niềm hạnh phúc trong ngày trọng đại này.</p>
+      <p class="footer-names"><span data-bind="groom.name">Lê Tuấn Dương</span> & <span data-bind="bride.name">Vũ Thùy Linh</span></p>
+      <p class="footer-date" data-date="numeric">29 . 11 . 2026</p>
+      <a class="back-top" href="#home">Về đầu thiệp ↑</a>
+    </footer>
   </main>
 
   <button class="music-toggle" id="music-toggle" type="button" aria-label="Bật nhạc nền" aria-pressed="false" hidden><span class="music-icon" aria-hidden="true">♪</span><span class="sr-only music-text">Bật nhạc</span></button>
   <p class="sr-only" id="music-status" role="status"></p>
   <audio id="background-music" loop preload="none"></audio>
   <dialog class="photo-dialog" id="photo-dialog" aria-labelledby="photo-caption"><button type="button" class="dialog-close" aria-label="Đóng ảnh">×</button><img id="dialog-image" alt=""><p id="photo-caption"></p></dialog>
-  <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/app.js?v=20261111"></script>
   <script type="module" src="js/rsvp-page.js"></script>
 </body>
 </html>

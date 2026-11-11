@@ -7,14 +7,20 @@
 }
 
 :root {
-  --paper: #f7f0e6;
-  --wine: #963d45;
-  --wine-dark: #772c36;
-  --ink: #6d5c52;
-  --muted: #806f61;
-  --gold: #c5a36a;
-  --gold-ink: #8d6a3a;
-  --dark: #342d28;
+  --paper: #f7f5ec;
+  --surface: #fdfcf6;
+  --soft: #edf0e4;
+  --edge: #c8d1bd;
+  --green: #42543c;
+  --green-deep: #2f412e;
+  /* Preserve existing component tokens; the active accent is now green. */
+  --wine: var(--green);
+  --wine-dark: var(--green-deep);
+  --ink: #3f493a;
+  --muted: #66705f;
+  --gold: #b6a578;
+  --gold-ink: #68754d;
+  --dark: var(--green-deep);
   --serif: "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
   --script: "Dancing Script", Georgia, cursive;
   --sans: "Segoe UI", Arial, sans-serif;
@@ -44,32 +50,44 @@ h3 { color: var(--wine); font-size: 27px; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 25px; min-height: 46px; border: 1px solid var(--gold-ink); border-radius: 40px; padding: 9px 29px; line-height: 1.5; letter-spacing: .4px; transition: background .25s, color .25s, transform .25s; }
 .button:hover { transform: translateY(-2px); }
 .button-outline { background: transparent; color: var(--wine); }
-.button-outline:hover { background: #f3e0d0; }
+.button-outline:hover { background: var(--soft); }
+
+/* Original white orchids stay at the paper edges, never over the photographs. */
+.opening-note, .invitation, .celebration, .gallery, .rsvp-section, .gifts {
+  background-color: var(--paper);
+  background-image: url('../assets/flowers-orchid.svg'), url('../assets/flowers-orchid.svg');
+  background-position: left -35px top 25px, right -55px bottom 10px;
+  background-size: clamp(110px, 18vw, 210px) auto, clamp(95px, 16vw, 185px) auto;
+  background-repeat: no-repeat;
+}
 
 /* Sealed paper envelope. All geometry is local CSS, not a copied image. */
 .cover {
   position: fixed; inset: 0; z-index: 100; display: flex; align-items: flex-start; justify-content: center;
   overflow-y: auto; background-color: var(--paper); padding: 35px 24px;
-  background-image: radial-gradient(ellipse at 15% 20%, #e9ddc5a8, transparent 65%), radial-gradient(ellipse at 90% 90%, #e2bfb282, transparent 65%);
+  background-image: url('../assets/flowers-orchid.svg'), url('../assets/flowers-orchid.svg'), radial-gradient(ellipse at 80% 90%, #dce4d188, transparent 65%);
+  background-position: left -20px top 15px, right -40px bottom 0, center;
+  background-size: clamp(120px, 24vw, 260px) auto, clamp(100px, 20vw, 220px) auto, auto;
+  background-repeat: no-repeat;
 }
 .cover-frame { text-align: center; width: min(100%, 500px); margin-block: auto; padding-block: 25px; flex-shrink: 0; }
-.cover-salutation { font: 12px/1.8 var(--sans); text-transform: uppercase; letter-spacing: 4px; color: #6d594e; margin-bottom: 33px; }
+.cover-salutation { font: 12px/1.8 var(--sans); text-transform: uppercase; letter-spacing: 4px; color: var(--green); margin-bottom: 33px; }
 .guest-name { color: var(--wine); font-size: clamp(22px, 5vw, 30px); font-weight: 700; line-height: 1.5; overflow-wrap: anywhere; margin: -17px auto 25px; max-width: 100%; }
 .envelope {
   width: 350px; height: 230px; max-width: 100%; position: relative; perspective: 1000px; margin: 0 auto 42px;
-  background: #e2c999; border: 1px solid #d0ad6d; border-radius: 6px; box-shadow: 0 18px 28px #4b33282e;
+  background: var(--green); border: 1px solid #5d7451; border-radius: 6px; box-shadow: 0 18px 28px #29382a2e;
 }
-.envelope-letter { position: absolute; inset: 15px 18px; background: #fffcf4; color: var(--wine); text-align: center; padding: 15px 10px; border-radius: 3px; z-index: 1; }
+.envelope-letter { position: absolute; inset: 15px 18px; background: var(--surface); color: var(--wine); text-align: center; padding: 15px 10px; border-radius: 3px; z-index: 1; }
 .envelope-open { position: absolute; inset: 0; z-index: 6; width: 100%; height: 100%; padding: 0; border: 0; border-radius: inherit; background: transparent; }
 .envelope-letter > span { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
 .envelope-letter strong { display: block; font-family: var(--script); font-size: 51px; font-weight: 500; line-height: 1.4; }
 .envelope-letter i { font-size: 25px; color: var(--gold-ink); }
 .envelope-letter small { font-family: var(--script); font-size: 19px; }
-.envelope-pocket { position: absolute; inset: 0; z-index: 3; border-radius: 5px; background: #ead6aa; clip-path: polygon(0 0, 50% 49%, 100% 0, 100% 100%, 0 100%); }
-.envelope-pocket::before { content: ""; position: absolute; inset: 0; background: #f5ecda; clip-path: polygon(0 0, 55% 55%, 0 100%); }
-.envelope-pocket::after { content: ""; position: absolute; inset: 0; background: #f7eddb; clip-path: polygon(100% 0, 45% 55%, 100% 100%); }
-.envelope-flap { position: absolute; inset: 0; z-index: 4; background: linear-gradient(125deg, #f5e9d0, #e6d0a0); clip-path: polygon(0 0, 100% 0, 50% 55%); transform-origin: center top; backface-visibility: hidden; }
-.wax-seal { position: absolute; z-index: 5; left: 50%; top: 53%; transform: translate(-50%, -50%) rotate(-9deg); width: 65px; height: 65px; display: flex; justify-content: center; align-items: center; border-radius: 47% 52% 49% 50%; background: linear-gradient(135deg, #bd6669, #8e343e); border: 3px solid #ce8c8180; box-shadow: 0 4px 10px #67202b50, inset 0 0 0 2px #d39a8c40; color: #f5d9c7; font-family: var(--script); font-size: 26px; }
+.envelope-pocket { position: absolute; inset: 0; z-index: 3; border-radius: 5px; background: #4d6542; clip-path: polygon(0 0, 50% 49%, 100% 0, 100% 100%, 0 100%); }
+.envelope-pocket::before { content: ""; position: absolute; inset: 0; background: #526d47; clip-path: polygon(0 0, 55% 55%, 0 100%); }
+.envelope-pocket::after { content: ""; position: absolute; inset: 0; background: #48603e; clip-path: polygon(100% 0, 45% 55%, 100% 100%); }
+.envelope-flap { position: absolute; inset: 0; z-index: 4; background: linear-gradient(125deg, #465c3c, #354a32); clip-path: polygon(0 0, 100% 0, 50% 55%); transform-origin: center top; backface-visibility: hidden; }
+.wax-seal { position: absolute; z-index: 5; left: 50%; top: 53%; transform: translate(-50%, -50%) rotate(-9deg); width: 65px; height: 65px; display: flex; justify-content: center; align-items: center; border-radius: 47% 52% 49% 50%; background: linear-gradient(135deg, #b49a73, #806648); border: 3px solid #c5ad86; box-shadow: 0 4px 10px #29382a40, inset 0 0 0 2px #d6c3a0; color: #fff5dd; font-family: var(--script); font-size: 26px; }
 .wax-seal span { font-size: 15px; margin: 0 1px; }
 .cover .button { display: flex; width: max-content; max-width: 100%; margin-inline: auto; min-width: 220px; font-size: 18px; }
 .cover-names { margin-top: 28px; font-size: 18px; font-style: italic; line-height: 1.7; }
@@ -87,7 +105,7 @@ h3 { color: var(--wine); font-size: 27px; }
 /* The hero crop centers the couple rather than the original empty backdrop. */
 .hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; background: #c6b09b; color: #fff8ed; text-align: center; padding: 130px 24px 45px; }
 .hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
-.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, #291c1a0d 20%, #281c1a15 40%, #271c1bd6 100%); pointer-events: none; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, #24331f0d 20%, #24331f15 40%, #1f3020d6 100%); pointer-events: none; }
 .hero-copy { position: relative; z-index: 1; width: 100%; }
 .art-note { position: absolute; left: 20px; top: 18px; z-index: 1; font: 10px/1.6 var(--sans); padding: 5px 11px; border-radius: 30px; background: #342d2875; color: #fff8ed; }
 .eyebrow { font: 11px/2 var(--sans); text-transform: uppercase; letter-spacing: 5px; color: #f0d296; }
@@ -105,7 +123,7 @@ h3 { color: var(--wine); font-size: 27px; }
 .countdown-section { text-align: center; padding-top: 40px; padding-bottom: 60px; }
 .countdown-section h2 { font-size: clamp(26px, 3vw, 34px); font-weight: 700; }
 .countdown { display: flex; justify-content: center; gap: 13px; margin: 28px auto 14px; }
-.countdown > div { width: 85px; padding: 15px 5px 13px; background: #fffcf5; border: 1px solid #e8d6bb; border-radius: 13px; box-shadow: 0 6px 15px #73513e09; }
+.countdown > div { width: 85px; padding: 15px 5px 13px; background: var(--surface); border: 1px solid var(--edge); border-radius: 13px; box-shadow: 0 6px 15px #29382a09; }
 .countdown span { display: block; font: 700 35px/1.4 var(--sans); color: var(--wine); font-variant-numeric: tabular-nums; }
 .countdown small { font: 9px/2 var(--sans); text-transform: uppercase; letter-spacing: 2px; color: var(--gold-ink); }
 .countdown-caption { color: var(--muted); font-size: 13px; font-style: italic; }
@@ -114,7 +132,7 @@ h3 { color: var(--wine); font-size: 27px; }
 .invitation .section-heading { margin-bottom: 36px; }
 .family-grid { display: grid; grid-template-columns: 1fr 55px 1fr; align-items: center; max-width: 820px; margin: auto; }
 .family { text-align: center; min-width: 0; }
-.person-avatar { border-radius: 50%; padding: 6px; width: 175px; height: 175px; margin: 0 auto 18px; border: 1px solid #ccb384; background: #fffcf5; box-shadow: 0 8px 20px #5a3b2417; }
+.person-avatar { border-radius: 50%; padding: 6px; width: 175px; height: 175px; margin: 0 auto 18px; border: 1px solid var(--edge); background: var(--surface); box-shadow: 0 8px 20px #29382a17; }
 .person-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
 .family-label { font: 10px/2 var(--sans); text-transform: uppercase; letter-spacing: 2px; color: var(--gold-ink); }
 .family h3 { font-size: 28px; margin: 5px auto 9px; }
@@ -125,25 +143,41 @@ h3 { color: var(--wine); font-size: 27px; }
 .couple-keepsake img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: center; border-radius: 14px; box-shadow: 0 10px 25px #5a3b2414; }
 .couple-keepsake figcaption { text-align: center; color: var(--muted); font-style: italic; font-size: 14px; margin-top: 14px; }
 
-/* A single shared reception, deliberately distinct from the paper sections. */
-.celebration { position: relative; isolation: isolate; background: var(--dark); color: #eee1ce; }
-.celebration h2 { color: #fff5e7; }
-.celebration .section-heading > p { color: #e0ceb9; }
-.event-card { max-width: 700px; margin: 35px auto 0; display: grid; grid-template-columns: 1fr 1.15fr; overflow: hidden; border: 1px solid #ae8a5750; border-radius: 16px; background: #ffffff05; }
+/* Formal invitation and a three-stage timeline on floral cream paper. */
+.celebration { position: relative; isolation: isolate; color: var(--ink); }
+.celebration h2 { color: var(--green); text-transform: uppercase; font-size: clamp(21px, 4.5vw, 30px); letter-spacing: 1.5px; }
+.celebration .section-heading > p { color: var(--green); }
+.event-card { max-width: 640px; margin: 28px auto 0; display: grid; grid-template-columns: 1fr; overflow: hidden; border: 1px solid var(--edge); border-radius: 16px; background: var(--surface); }
+.event-art { height: clamp(200px, 30vw, 280px); overflow: hidden; }
 .event-art img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .event-info { padding: 30px 25px; text-align: center; }
-.event-tag { border: 1px solid #c5a36a80; border-radius: 30px; font: 9px/1.6 var(--sans); text-transform: uppercase; letter-spacing: 1px; padding: 4px 12px; color: #e7cc97; display: inline-block; }
-.event-info h3 { font-size: 26px; color: #fff1dc; margin-top: 13px; }
-.event-time { color: #ecd19b; font-size: 40px; line-height: 1.4; margin-top: 12px; }
-.event-date { font-size: 15px; color: #eadac7; }
-.event-info h4 { font-size: 21px; color: #f4e4cc; margin-top: 18px; }
-.event-address { font-size: 14px; margin: 6px auto 20px; color: #dfcdb8; }
-.button-dark-outline { border-color: #c5a36a99; color: #f4e4cc; background: transparent; font-size: 14px; }
-.button-dark-outline:hover { background: #c5a36a15; }
-.button-dark-outline:focus-visible { outline-color: #f0d296; }
+.event-tag { border: 1px solid var(--edge); border-radius: 30px; font: 9px/1.6 var(--sans); text-transform: uppercase; letter-spacing: 1px; padding: 4px 12px; color: var(--green); display: inline-block; }
+.event-info h3 { font-size: 26px; color: var(--green); margin-top: 13px; }
+.event-time { color: var(--green); font-size: 40px; line-height: 1.4; margin-top: 12px; }
+.event-date { font-size: 15px; color: var(--ink); }
+.event-info h4 { font-size: 24px; color: var(--green); margin-top: 18px; }
+.event-address { font-size: 14px; margin: 6px auto 20px; color: var(--muted); }
+.button-dark-outline { border-color: var(--green); color: var(--green); background: transparent; font-size: 14px; }
+.button-dark-outline:hover { background: var(--soft); }
+.button-dark-outline:focus-visible { outline-color: var(--green); }
 #map-link { position: relative; gap: 0; padding-inline: 42px; }
 .map-arrow { position: absolute; right: 16px; }
-.event-info small { display: block; color: #d4c1a9; font-size: 10px; margin-top: 12px; }
+.event-info small { display: block; color: var(--muted); font-size: 10px; margin-top: 12px; }
+.celebration .section-heading .event-guest { font-size: clamp(24px, 5vw, 34px); line-height: 1.5; font-weight: 700; overflow-wrap: anywhere; max-width: 640px; margin-inline: auto; }
+.event-invitation-copy { margin: 18px auto; font-size: clamp(14px, 3.6vw, 17px); line-height: 1.9; }
+.event-calendar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: clamp(10px, 3vw, 24px); max-width: 390px; margin: 14px auto 20px; }
+.event-calendar > span { padding-block: 7px; border-block: 1px solid currentColor; font: 12px/1.5 var(--sans); text-transform: uppercase; }
+.event-calendar b { font-weight: 400; }
+.event-calendar > strong { font-size: clamp(52px, 12vw, 72px); font-weight: 400; line-height: 1.1; }
+.event-venue-intro { font-size: 13px; margin-top: 20px; }
+.event-arrival-label { font-size: 12px; color: var(--muted); margin-top: 18px; }
+.event-schedule { max-width: 640px; margin: 40px auto 0; text-align: center; }
+#timeline-heading { font: 48px/1.4 var(--script); color: inherit; }
+.event-timeline { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(8px, 3vw, 28px); list-style: none; padding: 0; margin: 24px 0 0; }
+.event-timeline li { display: flex; flex-direction: column; align-items: center; min-width: 0; }
+.event-timeline svg { display: block; width: min(100%, 105px); height: auto; aspect-ratio: 1; margin-bottom: 15px; }
+.event-timeline time { display: block; font-size: clamp(19px, 4.5vw, 26px); line-height: 1.5; }
+.event-timeline span { display: block; margin-top: 5px; font-size: clamp(12px, 3.2vw, 16px); line-height: 1.6; }
 
 /* Photo-first grid, ready for the couple’s own photographs. */
 .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 930px; margin: 35px auto 0; }
@@ -160,29 +194,30 @@ h3 { color: var(--wine); font-size: 27px; }
 .dialog-close { position: absolute; right: 22px; top: 22px; width: 38px; height: 38px; border: 1px solid #f3dfca; border-radius: 50%; background: var(--wine-dark); color: #fff5e7; font-size: 27px; line-height: 1; }
 
 /* ARIA tabs are only enabled by JS; otherwise both gift cards remain visible. */
-.gifts { text-align: center; background: linear-gradient(180deg, var(--paper), #f0e1c8); padding-top: 35px; }
-.gift-tabs { display: flex; align-items: center; width: max-content; max-width: 100%; padding: 4px; margin: 30px auto 23px; border: 1px solid #ceb78d; border-radius: 40px; gap: 3px; }
+.gifts { text-align: center; padding-top: 35px; }
+.gift-tabs { display: flex; align-items: center; width: max-content; max-width: 100%; padding: 4px; margin: 30px auto 23px; border: 1px solid var(--edge); border-radius: 40px; gap: 3px; }
 .gift-tabs button { border: 0; border-radius: 30px; padding: 8px 26px; background: transparent; color: var(--ink); font-size: 14px; min-height: 42px; transition: background .2s, color .2s; }
 .gift-tabs button[aria-selected="true"] { background: var(--wine); color: #fff5e7; }
 .gift-panels { max-width: 360px; margin-inline: auto; }
-.gift-card { padding: 30px 24px; border-radius: 24px; background: #fffcf6; border: 1px solid #e5d4b6; box-shadow: 0 10px 24px #5a3b2410; margin: 20px auto 0; }
+.gift-card { padding: 30px 24px; border-radius: 24px; background: var(--surface); border: 1px solid var(--edge); box-shadow: 0 10px 24px #29382a10; margin: 20px auto 0; }
 .gift-card h3 { font-size: 26px; line-height: 1.5; }
-.gift-placeholder { display: grid; place-items: center; width: 135px; height: 135px; border-radius: 18px; background: #f6eddf; border: 1px dashed #cbb48d; color: var(--wine); font-size: 48px; margin: 20px auto; }
+.gift-placeholder { display: grid; place-items: center; width: 135px; height: 135px; border-radius: 18px; background: var(--soft); border: 1px dashed var(--edge); color: var(--wine); font-size: 48px; margin: 20px auto; }
 .gift-content p { color: var(--wine); font-size: 16px; }
 .gift-content small { display: block; font-size: 12px; color: var(--muted); margin-top: 7px; }
 .gift-content img { width: 220px; height: 220px; object-fit: contain; padding: 10px; border-radius: 9px; background: #fff; margin: 20px auto 15px; }
 .gift-content .bank-info { font-size: 14px; line-height: 1.9; overflow-wrap: anywhere; }
 .account-number { display: block; font: 17px/2 var(--sans); }
-.copy-account { border: 1px solid #ceb78d; color: var(--wine); border-radius: 30px; padding: 10px 18px; background: transparent; font-size: 14px; margin: 14px auto 0; }
+.copy-account { border: 1px solid var(--edge); color: var(--wine); border-radius: 30px; padding: 10px 18px; background: transparent; font-size: 14px; margin: 14px auto 0; }
 .gift-content [role="status"] { font-size: 13px; margin-top: 10px; overflow-wrap: anywhere; }
 
-.thanks { background: #2b231f; color: #eee0ca; text-align: center; padding-bottom: 40px; }
-.thanks-monogram { display: block; color: #dcc08a; font: 70px/1.5 var(--script); margin-bottom: 10px; }
+.thanks { background: var(--green-deep); color: #eef0e2; text-align: center; padding-bottom: 40px; }
+.thanks-monogram { display: block; color: #e1d6b5; font: 70px/1.5 var(--script); margin-bottom: 10px; }
 .thanks-monogram i { font-size: .6em; padding-inline: 3px; }
-.thanks > p:not(.footer-names, .footer-date) { font-style: italic; font-size: 17px; color: #e4d1b8; }
+.thanks > p:not(.footer-names, .footer-date) { font-style: italic; font-size: 17px; color: #eef0e2; max-width: 650px; margin-inline: auto; }
+.thanks-message { line-height: 2; margin-top: 18px; }
 .footer-names { font-size: 20px; margin: 24px auto 10px; color: #f8ead7; }
-.footer-date { color: #dcc08a; letter-spacing: 4px; font-size: 13px; }
-.back-top { display: inline-block; color: #dbc5a6; font-size: 12px; margin-top: 30px; padding: 6px 12px; border-bottom: 1px solid #b6976a55; }
+.footer-date { color: #e1d6b5; letter-spacing: 4px; font-size: 13px; }
+.back-top { display: inline-block; color: #e1d6b5; font-size: 12px; margin-top: 30px; padding: 6px 12px; border-bottom: 1px solid #c8d1bd66; }
 .music-toggle { position: fixed; z-index: 30; right: 20px; bottom: 20px; display: grid; place-items: center; width: 48px; height: 48px; background: var(--wine); color: #fff5e7; border: 4px solid #fff5e7; border-radius: 50%; box-shadow: 0 3px 12px #342d2830; }
 .music-icon { font-size: 22px; line-height: 1; }
 .music-toggle[aria-pressed="true"] .music-icon { animation: music-sway 3s ease-in-out infinite; }
@@ -191,6 +226,7 @@ h3 { color: var(--wine); font-size: 27px; }
 
 .music-notes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 2; }
 .music-notes span { position: absolute; top: -56px; color: #f0d7a6; opacity: .18; font: 25px/1 var(--serif); animation: note-fall 26s linear infinite; }
+.celebration .music-notes span { color: var(--green); }
 .music-notes span:nth-child(1) { left: 3%; animation-delay: -5s; }
 .music-notes span:nth-child(2) { left: 16%; animation-delay: -19s; }
 .music-notes span:nth-child(3) { left: 29%; animation-delay: -12s; }

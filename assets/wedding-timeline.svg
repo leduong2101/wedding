@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="arrival" viewBox="0 0 100 100">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 88h72M23 88V44a27 27 0 0 1 54 0v44M30 88V45a20 20 0 0 1 40 0v43M31 34c4 20 8 28 19 33M69 34c-4 20-8 28-19 33M50 67c-12 8-14 16-15 21M50 67c12 8 14 16 15 21"/>
+      <path d="M21 43c-13-6-11-21 0-23M26 29c-6-11-1-19 9-19M40 21C37 8 48 4 53 13M60 22c7-12 20-8 20 2M73 34c13-1 18 9 10 17"/>
+      <path d="M16 35q-9-1-10-10 8-1 12 6M31 19q-4-8 1-13 6 5 4 12M65 19q1-9 9-12 4 8-4 14M81 43q7-6 13-1-3 9-12 7" fill="currentColor" opacity=".18"/>
+      <g fill="#faf9f2"><circle cx="23" cy="28" r="7"/><circle cx="23" cy="28" r="2"/><circle cx="48" cy="15" r="7"/><circle cx="48" cy="15" r="2"/><circle cx="74" cy="29" r="7"/><circle cx="74" cy="29" r="2"/></g>
+    </g>
+  </symbol>
+  <symbol id="ceremony" viewBox="0 0 100 100">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="36" cy="61" r="25"/><circle cx="36" cy="61" r="20"/><path d="M59 37a25 25 0 1 1-2 49M62 42a20 20 0 1 1-2 39"/>
+      <path d="m27 27 4-10h12l5 10-11 12Zm0 0h21m-17-10 6 22 6-22M37 8V3M21 14l-4-4M52 14l5-4"/>
+      <path d="M71 18c-8-8-15 3 0 11 15-8 8-19 0-11ZM18 44c-6-6-11 2 0 8 11-6 6-14 0-8Z" fill="currentColor" opacity=".4" stroke="none"/>
+    </g>
+  </symbol>
+  <symbol id="dinner" viewBox="0 0 100 100">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="rotate(15 33 52)"><path d="M22 16h22v28c0 9-4 15-11 15s-11-6-11-15ZM33 59v26m-12 2h24M23 33h20"/><path d="M27 38v9q0 5 3 6"/></g>
+      <g transform="rotate(-15 68 52)"><path d="M57 16h22v28c0 9-4 15-11 15s-11-6-11-15ZM68 59v26m-12 2h24M58 33h20"/><path d="M63 38v9q0 5 3 6"/></g>
+      <path d="M48 17V7m-7 13-5-7m19 7 5-7"/>
+      <path d="M51 36c-6-6-11 2 0 8 11-6 6-14 0-8Z" fill="currentColor" opacity=".4" stroke="none"/>
+    </g>
+  </symbol>
+</svg>

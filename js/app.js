@@ -1,4 +1,4 @@
-import { wedding } from './config.js';
+import { wedding } from './config.js?v=20261111';
 import { getCountdown } from './countdown.js';
 import { createMusicController } from './music.js';
 import { getGiftDetails } from './gifts.js';
@@ -11,6 +11,7 @@ const cover = $('#cover');
 const guestName = guestNameFromSearch(window.location.search);
 $('#guest-name').textContent = guestName;
 $('#guest-name').hidden = !guestName;
+$('#event-guest').textContent = guestName || 'Quý khách';
 const main = $('#main');
 const musicButton = $('#music-toggle');
 const audio = $('#background-music');
@@ -33,7 +34,7 @@ const rawWeekday = datePart({ weekday: 'long' });
 const weekday = rawWeekday.charAt(0).toLocaleUpperCase('vi-VN') + rawWeekday.slice(1);
 const time = datePart({ hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
 const dates = {
-  day, 'month-year': `Tháng ${month} · ${year}`, weekday, time,
+  day, month, year, 'month-year': `Tháng ${month} · ${year}`, weekday, time,
   'weekday-time': `${weekday} · ${time}`, short: `${day}.${month}.${year}`, numeric: `${day} . ${month} . ${year}`,
 };
 document.querySelectorAll('[data-date]').forEach(element => { element.textContent = dates[element.dataset.date]; });

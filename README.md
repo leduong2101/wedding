@@ -1,8 +1,14 @@
 # Thiệp cưới Thùy Linh & Tuấn Dương
 
-Thiệp đỏ truyền thống trên nền kem, HTML/CSS/JavaScript thuần, không framework, không cần build. Một tiệc chung lúc **17:00 ngày 29/11/2026 (giờ Việt Nam)** tại **Queen Bee Luxury, 20 Láng Hạ, phường Láng, Hà Nội**.
+Thiệp xanh lá trầm trên nền kem, điểm hoa lan trắng, HTML/CSS/JavaScript thuần, không framework, không cần build. Một tiệc chung ngày **29/11/2026 (giờ Việt Nam)** tại **Queen Bee Luxury, 20 Láng Hạ, phường Láng, Hà Nội**: **17:00 đón khách · 17:30 tổ chức hôn lễ · 18:00 khai tiệc**. Mốc đếm ngược vẫn là giờ đón khách 17:00.
 
-Giao diện tham khảo bố cục thiệp Toàn–Loan: phong bì kem có dấu sáp đỏ và hiệu ứng mở nắp; ảnh bìa phủ màn hình với tên viết tay; lời ngỏ, đếm ngược, chân dung tròn, một tiệc chung trên nền tối, album dạng lưới, hai tab mừng cưới và lời cảm ơn. Không có thanh menu. Không sử dụng ảnh, QR hay mã nguồn của cặp đôi mẫu.
+Giao diện giữ bố cục thiệp hiện tại: phong bì xanh có dấu sáp đồng và hiệu ứng mở nắp; ảnh bìa phủ màn hình với tên viết tay; lời ngỏ, đếm ngược, chân dung tròn, lời mời tiệc chung và timeline trên nền kem, album dạng lưới, xác nhận tham dự, hai tab mừng cưới và lời cảm ơn. Không có thanh menu. Không sử dụng ảnh, QR hay mã nguồn của cặp đôi mẫu.
+
+Mẫu cập nhật do chủ thiệp cung cấp tại `~/Downloads/update_wedding_card/{invitation,ending,color}` chỉ dùng làm tham khảo bố cục/màu/nội dung; không đưa các ảnh chụp màn hình có tên khách hoặc ảnh cặp đôi khác vào website. `assets/flowers-orchid.svg` và `assets/wedding-timeline.svg` là minh họa SVG tự vẽ, tải cục bộ, không chặn thao tác. Màu chủ đạo chỉnh tại `:root` của `styles/invitation.css` (`--paper`, `--green`, `--green-deep`, `--surface`, `--edge`); tên token cũ `--wine`/`--wine-dark` được giữ làm bí danh xanh để không đổi giao diện lập trình của các thành phần.
+
+Các tham chiếu CSS/favicon/app/config đang gắn phiên bản `?v=20261111` để trình duyệt lấy bảng màu và lịch trình mới thay vì dùng bộ nhớ đệm cũ; không đổi URL thiệp hoặc link tên khách đã gửi. Khi cập nhật các tài nguyên này về sau, tăng cùng phiên bản ở các trang liên quan.
+
+Trang tiệc hiển thị tên từ `khach` dạng chữ thuần, thiếu tên dùng “Quý khách”; ngày/tháng/năm lấy từ ngày cưới cấu hình, không dùng ngày/nhà hàng trong ảnh mẫu. Ba mốc timeline nằm tại `event.timeline` trong `js/config.js`, có nội dung HTML dự phòng khi tắt JavaScript. Khi đổi lịch trình, cập nhật cả các thẻ `<time datetime>` và nội dung dự phòng trong `index.html`. Trang cuối dùng nguyên văn lời cảm ơn ở mẫu `ending`, không thêm ảnh mới hoặc thay ảnh đang dùng.
 
 Stylesheet đang sử dụng là **`styles/invitation.css`**. `styles.css` và `styles/romantic.css` là các phiên bản cũ được giữ lại, không còn được nạp bởi `index.html`. Hiệu ứng mở thiệp và hiện dần khi cuộn nằm trong `js/motion.js`; chuyển tab mừng cưới trong `js/gift-tabs.js`. Nốt nhạc rơi chỉ trong ảnh bìa và phần tiệc: mỗi phần 15 nốt, cỡ 25px, độ mờ 18%, chu kỳ 26 giây, không chặn thao tác. Hiệu ứng tự tắt khi thiết bị chọn giảm chuyển động. Không có JavaScript thì phong bì không chặn nội dung và cả hai mục mừng cưới đều đọc được.
 
@@ -30,7 +36,7 @@ Mở <http://localhost:8000>. Không mở trực tiếp `index.html` bằng `fil
 
 Mở <https://leduong2101.github.io/wedding/tao-link.html>, nhập đầy đủ tên/cách xưng hô (ví dụ **Anh Minh và gia đình**), kiểm tra phần xem trước, bấm **Tạo link**, rồi **Sao chép link** để gửi qua Zalo hoặc tin nhắn. Có thể bấm **Mở thiệp xem thử** trước khi gửi. Nếu sao chép tự động bị chặn, trang chọn sẵn link để bạn sao chép thủ công.
 
-Mỗi link chứa tên riêng trong tham số `khach`, ví dụ `https://leduong2101.github.io/wedding/?khach=Anh+Minh`. Thiệp chỉ hiển thị tên trên phong bì; link gốc không có tên vẫn hiện lời mời chung. Hai khách mở link cùng lúc không ảnh hưởng nhau. Khi đổi tên trong công cụ, link cũ được ẩn để tránh gửi nhầm. Tên được chuẩn hóa khoảng trắng, giới hạn 120 ký tự và hiển thị dạng chữ thuần, không thực thi HTML.
+Mỗi link chứa tên riêng trong tham số `khach`, ví dụ `https://leduong2101.github.io/wedding/?khach=Anh+Minh`. Thiệp hiển thị tên trên phong bì, trong lời mời trang tiệc và tự điền ở form xác nhận; link gốc không có tên vẫn hiện lời mời chung. Hai khách mở link cùng lúc không ảnh hưởng nhau. Khi đổi tên trong công cụ, link cũ được ẩn để tránh gửi nhầm. Tên được chuẩn hóa khoảng trắng, giới hạn 120 ký tự và hiển thị dạng chữ thuần, không thực thi HTML.
 
 Trang tạo link **công khai, không đăng nhập**, không có cơ sở dữ liệu, danh sách khách, cookie hay lưu tên vào localStorage. Tên nằm trong URL nên có thể xuất hiện trong lịch sử trình duyệt/tin nhắn và nhật ký truy cập của nhà cung cấp hosting; người nhận có thể sửa hoặc chuyển tiếp link. Đây không phải cơ chế xác thực danh tính hay giới hạn khách. Không đưa dữ liệu nhạy cảm vào tên. Công cụ không được gắn nút dẫn trong thiệp nhưng ai biết địa chỉ đều dùng được.
 
@@ -57,7 +63,7 @@ Thông tin động tập trung tại **`js/config.js`**:
 - `bride`, `groom`: tên, tên gọi ngắn, bố mẹ và `photo: { src, alt }` cho ảnh chân dung tròn.
 - `heroPhoto: { src, alt }`: ảnh bìa toàn màn hình. Chọn ảnh có khoảng trống dưới để đặt tên; kiểm tra cả khung dọc điện thoại và khung ngang máy tính. Điều chỉnh `object-position` của `.hero-photo` trong stylesheet nếu cần.
 - `couplePhoto: { src, alt }`: ảnh đôi lớn sau phần giới thiệu gia đình.
-- `event`: thời điểm có múi giờ `+07:00`, nhà hàng, địa chỉ, Google Maps và `photo: { src, alt }` minh họa cho thẻ tiệc cưới.
+- `event`: thời điểm đón khách có múi giờ `+07:00`, `timeline` gồm giờ/nhãn của ba mốc, nhà hàng, địa chỉ, Google Maps và `photo: { src, alt }` minh họa cho thẻ tiệc cưới.
 - `photos`: danh sách ảnh album, mô tả `alt`, chú thích `caption`. Nếu không có `heroPhoto` thì dùng ảnh album đầu tiên cho bìa. Đặt ảnh trong `assets/`, dùng đường dẫn tương đối, ví dụ `assets/anh-cuoi-01.webp`. Nên nén ảnh xuống dưới khoảng 300 KB/ảnh, chiều rộng 1000–1600px; không dùng ảnh gốc dung lượng lớn.
 - `music`: thay `src` bằng đường dẫn nhạc bạn có quyền sử dụng, ví dụ `assets/nhac-cuoi.mp3`; sửa `label` cho đúng tên bài. Nhạc bắt đầu khi bấm **Mở thiệp**, phát lặp và có nút bật/tắt. Trình duyệt có thể dừng khi khóa màn hình/chuyển ứng dụng.
 - `gifts`: mặc định `null` nên chỉ hiện **QR sẽ được cập nhật**. Không có số tài khoản hoặc QR giả.
@@ -118,6 +124,7 @@ Kiểm thử đếm ngược trước/đúng/sau giờ cưới, trạng thái nh
 - `tests/reference-layout-checks.js`: phong bì/dấu sáp/mở nắp, ảnh bìa toàn màn hình, chân dung tròn, một tiệc chung, MP3 thực tế, hai tab mừng cưới (click, phím mũi tên, Home/End), nốt nhạc trang trí và hành vi không JavaScript.
 - `tests/layout-polish-checks.js`: nút mở thiệp căn giữa, lời ngỏ mới, bỏ lời mời lặp lại, chữ đậm, ba ảnh trang giới thiệu lớn và vừa màn hình, 15 nốt nhạc 25px/mờ/chậm đúng hai phần, không chặn thao tác, giảm chuyển động, album không có huy hiệu tròn nhưng vẫn xem lớn được.
 - `tests/portrait-event-checks.js`: tải đúng bản chân dung khung rộng, tiêu đề “Lễ Thành hôn”, chữ bản đồ cân giữa tại 320–1440px; xuất ảnh chụp để kiểm tra bố cục.
+- `tests/invitation-update-checks.js`: lời mời trang tiệc, tên khách/tên chung/tên giống HTML, ba mốc 17:00–17:30–18:00, đúng ngày/địa điểm và thứ tự phần, không tràn ở 320–1440px. `tests/green-cream-checks.js`: lời cảm ơn theo mẫu, nền kem/xanh/hoa trắng, độ tương phản chữ và ảnh chụp kiểm tra trực quan.
 - `tests/guest-browser-checks.js`: nhập tên/xem trước/tạo link, đổi tên làm mất link cũ, sao chép thành công/thất bại, hai khách đồng thời, dữ liệu giống HTML, tên dài trên mobile, thiệp chung và trang tạo link 320–1440px. `tests/guests.test.js` thuộc `npm test`, kiểm tra mã hóa URL/tên tiếng Việt/giới hạn/đường dẫn project.
 - `tests/rsvp.test.js`, `tests/apps-script.test.js`: dữ liệu tham dự/không, số người 1–10, xác nhận thành công/thất bại, timeout, chống công thức Sheets và lỗi ghi. `tests/rsvp-browser-checks.js`: form ngay trong link thiệp tên cũ, thứ tự album → xác nhận → mừng cưới, tự điền tên, dropdown, không có lời nhắn, chờ kết quả trước khi báo lưu, khóa bấm trùng, lỗi và thử lại, form 320–1440px, tương thích trang xác nhận riêng đã công bố.
 
