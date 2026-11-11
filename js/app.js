@@ -4,7 +4,7 @@ import { createMusicController } from './music.js';
 import { getGiftDetails } from './gifts.js';
 import { dismissCover, revealOnScroll } from './motion.js';
 import { setupGiftTabs } from './gift-tabs.js';
-import { guestNameFromSearch } from './guests.js';
+import { guestNameFromSearch, shouldShowGifts } from './guests.js?v=20261111-gifts';
 
 const $ = selector => document.querySelector(selector);
 const cover = $('#cover');
@@ -12,6 +12,7 @@ const guestName = guestNameFromSearch(window.location.search);
 $('#guest-name').textContent = guestName;
 $('#guest-name').hidden = !guestName;
 $('#event-guest').textContent = guestName || 'Quý khách';
+$('#gifts').hidden = !shouldShowGifts(window.location.search);
 const main = $('#main');
 const musicButton = $('#music-toggle');
 const audio = $('#background-music');

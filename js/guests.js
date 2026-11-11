@@ -7,12 +7,18 @@ export function guestNameFromSearch(search) {
   return normalizeGuestName(new URLSearchParams(search).get('khach'));
 }
 
-export function createGuestLink(name, pageUrl) {
+export function shouldShowGifts(search) {
+  // Missing options preserve all previously shared invitations.
+  return new URLSearchParams(search).get('mungcuoi') !== '0';
+}
+
+export function createGuestLink(name, pageUrl, { showGifts = true } = {}) {
   const guest = normalizeGuestName(name);
   if (!guest) throw new Error('Vui lòng nhập tên khách mời.');
   const url = new URL('./', pageUrl);
   url.search = '';
   url.hash = '';
   url.searchParams.set('khach', guest);
+  if (!showGifts) url.searchParams.set('mungcuoi', '0');
   return url.href;
 }

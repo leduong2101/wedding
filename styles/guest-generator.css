@@ -6,7 +6,10 @@
 .generator-intro { text-align: center; margin: 10px 0 25px; }
 .generator-card fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
 .generator-card label { display: block; font-weight: 700; }
-.generator-card input { width: 100%; min-width: 0; min-height: 48px; padding: 10px 12px; margin: 7px 0; border: 1px solid var(--edge); border-radius: 10px; background: #fff; color: var(--ink); font: 16px/1.6 var(--sans); }
+.generator-card input[type="text"] { width: 100%; min-width: 0; min-height: 48px; padding: 10px 12px; margin: 7px 0; border: 1px solid var(--edge); border-radius: 10px; background: #fff; color: var(--ink); font: 16px/1.6 var(--sans); }
+.generator-card .gift-option { display: flex; align-items: center; gap: 10px; min-height: 48px; margin-top: 18px; cursor: pointer; }
+.gift-option input { width: 20px; height: 20px; flex: 0 0 20px; accent-color: var(--green); }
+#gift-preview { margin-top: 12px; }
 .generator-card input:focus-visible { outline: 2px solid var(--wine); outline-offset: 2px; }
 .generator-card small { display: block; font-size: 12px; color: var(--muted); }
 .guest-preview-card { padding: 24px 16px; margin: 22px 0; text-align: center; border: 1px solid var(--edge); border-radius: 14px; background: var(--paper); }

@@ -24,3 +24,18 @@ test('guest names are normalized and bounded, without interpreting markup', () =
   assert.equal(guests.guestNameFromSearch('?khach=%3Cimg%20src%3Dx%3E'), '<img src=x>');
   assert.equal(guests.createGuestLink('Lan', 'http://localhost:8000/tao-link.html'), 'http://localhost:8000/?khach=Lan');
 });
+
+test('new links optionally hide gifts without changing legacy links or guest names', () => {
+  const page = 'https://example.com/wedding/tao-link.html?mungcuoi=0';
+  const hidden = new URL(guests.createGuestLink('Chị Lan & gia đình', page, { showGifts: false }));
+  assert.equal(hidden.pathname, '/wedding/');
+  assert.equal(hidden.searchParams.get('khach'), 'Chị Lan & gia đình');
+  assert.equal(hidden.searchParams.get('mungcuoi'), '0');
+  assert.equal(guests.shouldShowGifts(hidden.search), false);
+  const shown = new URL(guests.createGuestLink('Anh Minh', page, { showGifts: true }));
+  assert.equal(shown.searchParams.has('mungcuoi'), false);
+  assert.equal(guests.shouldShowGifts(shown.search), true);
+  for (const search of ['', '?khach=Lan', '?mungcuoi=1', '?mungcuoi=', '?mungcuoi=unexpected']) {
+    assert.equal(guests.shouldShowGifts(search), true);
+  }
+});
