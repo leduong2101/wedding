@@ -12,7 +12,11 @@ export function shouldShowGifts(search) {
   return new URLSearchParams(search).get('mungcuoi') !== '0';
 }
 
-export function createGuestLink(name, pageUrl, { showGifts = true } = {}) {
+export function invitationSenderFromSearch(search) {
+  return new URLSearchParams(search).get('nguoigui') === 'bome' ? 'parents' : 'children';
+}
+
+export function createGuestLink(name, pageUrl, { showGifts = true, sender = 'children' } = {}) {
   const guest = normalizeGuestName(name);
   if (!guest) throw new Error('Vui lòng nhập tên khách mời.');
   const url = new URL('./', pageUrl);
@@ -20,5 +24,6 @@ export function createGuestLink(name, pageUrl, { showGifts = true } = {}) {
   url.hash = '';
   url.searchParams.set('khach', guest);
   if (!showGifts) url.searchParams.set('mungcuoi', '0');
+  if (sender === 'parents') url.searchParams.set('nguoigui', 'bome');
   return url.href;
 }

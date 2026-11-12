@@ -1,4 +1,4 @@
-import { normalizeGuestName, createGuestLink } from './guests.js?v=20261111-gifts';
+import { normalizeGuestName, createGuestLink } from './guests.js?v=20261112-sender';
 
 const form = document.querySelector('#guest-form');
 const name = document.querySelector('#guest-input');
@@ -9,10 +9,13 @@ const openLink = document.querySelector('#open-guest-link');
 const status = document.querySelector('#generator-status');
 const showGifts = document.querySelector('#show-gifts');
 const giftPreview = document.querySelector('#gift-preview');
+const sender = document.querySelector('#invitation-sender');
+const senderPreview = document.querySelector('#sender-preview');
 
 function resetPreview() {
   preview.textContent = normalizeGuestName(name.value) || 'Tên khách mời';
   giftPreview.textContent = showGifts.checked ? 'Có hiển thị phần Mừng cưới' : 'Không hiển thị phần Mừng cưới';
+  senderPreview.textContent = sender.value === 'parents' ? 'Người gửi: Bố mẹ' : 'Người gửi: Các con';
   result.hidden = true;
   output.value = '';
   openLink.removeAttribute('href');
@@ -20,14 +23,15 @@ function resetPreview() {
 }
 name.addEventListener('input', resetPreview);
 showGifts.addEventListener('change', resetPreview);
+sender.addEventListener('change', resetPreview);
 
 form.addEventListener('submit', event => {
   event.preventDefault();
   try {
-    output.value = createGuestLink(name.value, location.href, { showGifts: showGifts.checked });
+    output.value = createGuestLink(name.value, location.href, { showGifts: showGifts.checked, sender: sender.value });
     openLink.href = output.value;
     result.hidden = false;
-    status.textContent = `Link đã sẵn sàng. ${giftPreview.textContent}. Kiểm tra rồi sao chép gửi khách.`;
+    status.textContent = `Link đã sẵn sàng. ${senderPreview.textContent}. ${giftPreview.textContent}. Kiểm tra rồi sao chép gửi khách.`;
   } catch (error) {
     status.textContent = error.message;
     name.focus();

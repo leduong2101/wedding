@@ -4,7 +4,7 @@ import { createMusicController } from './music.js';
 import { getGiftDetails } from './gifts.js';
 import { dismissCover, revealOnScroll } from './motion.js';
 import { setupGiftTabs } from './gift-tabs.js';
-import { guestNameFromSearch, shouldShowGifts } from './guests.js?v=20261111-gifts';
+import { guestNameFromSearch, shouldShowGifts, invitationSenderFromSearch } from './guests.js?v=20261112-sender';
 
 const $ = selector => document.querySelector(selector);
 const cover = $('#cover');
@@ -13,6 +13,10 @@ $('#guest-name').textContent = guestName;
 $('#guest-name').hidden = !guestName;
 $('#event-guest').textContent = guestName || 'Quý khách';
 $('#gifts').hidden = !shouldShowGifts(window.location.search);
+if (invitationSenderFromSearch(window.location.search) === 'parents') {
+  $('.hero-intro').textContent = 'Các con sắp về chung một nhà';
+  $('#journey-pronoun').textContent = 'hai con';
+}
 const main = $('#main');
 const musicButton = $('#music-toggle');
 const audio = $('#background-music');

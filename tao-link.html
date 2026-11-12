@@ -8,7 +8,7 @@
   <title>Tạo link mời riêng · Tuấn Dương & Thùy Linh</title>
   <link rel="icon" href="assets/favicon.svg?v=20261111" type="image/svg+xml">
   <link rel="stylesheet" href="styles/invitation.css?v=20261111">
-  <link rel="stylesheet" href="styles/guest-generator.css?v=20261111-gifts">
+  <link rel="stylesheet" href="styles/guest-generator.css?v=20261112-sender">
 </head>
 <body class="generator-page">
   <main class="generator-card">
@@ -21,12 +21,19 @@
         <label for="guest-input">Tên khách mời</label>
         <input id="guest-input" name="guest" type="text" required autocomplete="off" placeholder="Ví dụ: Anh Minh và gia đình" aria-describedby="name-help">
         <small id="name-help">Có thể nhập “Chị Lan”, “Gia đình bác Hùng”… Tên quá dài sẽ lấy 120 ký tự đầu như phần xem trước.</small>
+        <label class="sender-label" for="invitation-sender">Người gửi thiệp</label>
+        <select id="invitation-sender" aria-describedby="sender-help">
+          <option value="children" selected>Các con (cô dâu, chú rể)</option>
+          <option value="parents">Bố mẹ</option>
+        </select>
+        <small id="sender-help">Chọn Bố mẹ để đổi lời giới thiệu thành “Các con sắp về chung một nhà” và “hai con cùng nhau bước tiếp”.</small>
         <label class="gift-option" for="show-gifts"><input id="show-gifts" type="checkbox" aria-describedby="gift-option-help"><span>Hiển thị phần Mừng cưới</span></label>
         <small id="gift-option-help">Mặc định không tick: link mới sẽ ẩn phần Mừng cưới. Tick để hiển thị. Xác nhận tham dự vẫn giữ nguyên. Link đã gửi không bị thay đổi.</small>
         <div class="guest-preview-card" aria-label="Xem trước lời mời">
           <p>Trân trọng kính mời</p>
           <strong id="guest-preview">Tên khách mời</strong>
           <small>Đến chung vui cùng Tuấn Dương & Thùy Linh</small>
+          <small id="sender-preview">Người gửi: Các con</small>
           <small id="gift-preview">Không hiển thị phần Mừng cưới</small>
         </div>
         <button class="button button-outline" type="submit">Tạo link</button>
@@ -44,6 +51,6 @@
     <p class="generator-notice">Trang này công khai, không cần đăng nhập và không lưu danh sách khách. Tên nằm trong link; người nhận có thể sửa hoặc chuyển tiếp. Hãy kiểm tra đúng tên trước khi gửi.</p>
     <a class="general-invitation" href="./">Xem thiệp chung không có tên khách →</a>
   </main>
-  <script type="module" src="js/guest-generator.js?v=20261111-gifts"></script>
+  <script type="module" src="js/guest-generator.js?v=20261112-sender"></script>
 </body>
 </html>

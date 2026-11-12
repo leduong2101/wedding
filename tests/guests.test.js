@@ -39,3 +39,19 @@ test('new links optionally hide gifts without changing legacy links or guest nam
     assert.equal(guests.shouldShowGifts(search), true);
   }
 });
+
+test('sender is URL-local, optional and independent of gift visibility', () => {
+  for (const sender of ['children', 'parents']) {
+    for (const showGifts of [false, true]) {
+      const url = new URL(guests.createGuestLink('Gia đình bác Hùng', 'https://example.com/wedding/tao-link.html?nguoigui=bome', { sender, showGifts }));
+      assert.equal(guests.invitationSenderFromSearch(url.search), sender);
+      assert.equal(guests.shouldShowGifts(url.search), showGifts);
+      assert.equal(guests.guestNameFromSearch(url.search), 'Gia đình bác Hùng');
+      assert.equal(url.pathname, '/wedding/');
+      assert.equal(url.searchParams.get('nguoigui'), sender === 'parents' ? 'bome' : null);
+    }
+  }
+  for (const search of ['', '?khach=Lan', '?nguoigui=', '?nguoigui=invalid', '?nguoigui=%3Cimg%3E']) {
+    assert.equal(guests.invitationSenderFromSearch(search), 'children');
+  }
+});
